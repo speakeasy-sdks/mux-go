@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type SignalLiveStreamCompletePathParams struct {
@@ -10,6 +11,7 @@ type SignalLiveStreamCompletePathParams struct {
 
 type SignalLiveStreamCompleteRequest struct {
 	PathParams SignalLiveStreamCompletePathParams
+	Retries    *utils.RetryConfig
 }
 
 type SignalLiveStreamCompleteResponse struct {

@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetMetricTimeseriesDataPathParams struct {
@@ -19,6 +20,7 @@ type GetMetricTimeseriesDataQueryParams struct {
 type GetMetricTimeseriesDataRequest struct {
 	PathParams  GetMetricTimeseriesDataPathParams
 	QueryParams GetMetricTimeseriesDataQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type GetMetricTimeseriesDataResponse struct {

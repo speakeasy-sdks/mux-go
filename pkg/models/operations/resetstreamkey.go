@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ResetStreamKeyPathParams struct {
@@ -10,6 +11,7 @@ type ResetStreamKeyPathParams struct {
 
 type ResetStreamKeyRequest struct {
 	PathParams ResetStreamKeyPathParams
+	Retries    *utils.RetryConfig
 }
 
 type ResetStreamKeyResponse struct {

@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type UpdateAssetPathParams struct {
@@ -11,6 +12,7 @@ type UpdateAssetPathParams struct {
 type UpdateAssetRequest struct {
 	PathParams UpdateAssetPathParams
 	Request    shared.UpdateAssetRequest `request:"mediaType=application/json"`
+	Retries    *utils.RetryConfig
 }
 
 type UpdateAssetResponse struct {

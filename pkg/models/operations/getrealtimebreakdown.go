@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetRealtimeBreakdownPathParams struct {
@@ -19,6 +20,7 @@ type GetRealtimeBreakdownQueryParams struct {
 type GetRealtimeBreakdownRequest struct {
 	PathParams  GetRealtimeBreakdownPathParams
 	QueryParams GetRealtimeBreakdownQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type GetRealtimeBreakdownResponse struct {

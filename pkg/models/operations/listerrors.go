@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListErrorsQueryParams struct {
@@ -11,6 +12,7 @@ type ListErrorsQueryParams struct {
 
 type ListErrorsRequest struct {
 	QueryParams ListErrorsQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListErrorsResponse struct {

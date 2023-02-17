@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetAssetOrLivestreamIDPathParams struct {
@@ -10,6 +11,7 @@ type GetAssetOrLivestreamIDPathParams struct {
 
 type GetAssetOrLivestreamIDRequest struct {
 	PathParams GetAssetOrLivestreamIDPathParams
+	Retries    *utils.RetryConfig
 }
 
 type GetAssetOrLivestreamIDResponse struct {

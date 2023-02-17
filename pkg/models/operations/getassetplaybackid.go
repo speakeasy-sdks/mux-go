@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetAssetPlaybackIDPathParams struct {
@@ -11,6 +12,7 @@ type GetAssetPlaybackIDPathParams struct {
 
 type GetAssetPlaybackIDRequest struct {
 	PathParams GetAssetPlaybackIDPathParams
+	Retries    *utils.RetryConfig
 }
 
 type GetAssetPlaybackIDResponse struct {

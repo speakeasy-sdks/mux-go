@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetVideoViewPathParams struct {
@@ -10,6 +11,7 @@ type GetVideoViewPathParams struct {
 
 type GetVideoViewRequest struct {
 	PathParams GetVideoViewPathParams
+	Retries    *utils.RetryConfig
 }
 
 type GetVideoViewResponse struct {

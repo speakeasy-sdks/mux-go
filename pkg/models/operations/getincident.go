@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetIncidentPathParams struct {
@@ -10,6 +11,7 @@ type GetIncidentPathParams struct {
 
 type GetIncidentRequest struct {
 	PathParams GetIncidentPathParams
+	Retries    *utils.RetryConfig
 }
 
 type GetIncidentResponse struct {

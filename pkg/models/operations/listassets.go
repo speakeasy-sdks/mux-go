@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListAssetsQueryParams struct {
@@ -13,6 +14,7 @@ type ListAssetsQueryParams struct {
 
 type ListAssetsRequest struct {
 	QueryParams ListAssetsQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListAssetsResponse struct {

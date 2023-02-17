@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListTranscriptionVocabulariesQueryParams struct {
@@ -11,6 +12,7 @@ type ListTranscriptionVocabulariesQueryParams struct {
 
 type ListTranscriptionVocabulariesRequest struct {
 	QueryParams ListTranscriptionVocabulariesQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListTranscriptionVocabulariesResponse struct {

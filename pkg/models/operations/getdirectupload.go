@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetDirectUploadPathParams struct {
@@ -10,6 +11,7 @@ type GetDirectUploadPathParams struct {
 
 type GetDirectUploadRequest struct {
 	PathParams GetDirectUploadPathParams
+	Retries    *utils.RetryConfig
 }
 
 type GetDirectUploadResponse struct {

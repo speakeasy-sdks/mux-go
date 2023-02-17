@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetPlaybackRestrictionPathParams struct {
@@ -10,6 +11,7 @@ type GetPlaybackRestrictionPathParams struct {
 
 type GetPlaybackRestrictionRequest struct {
 	PathParams GetPlaybackRestrictionPathParams
+	Retries    *utils.RetryConfig
 }
 
 type GetPlaybackRestrictionResponse struct {

@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListAllMetricValuesQueryParams struct {
@@ -13,6 +14,7 @@ type ListAllMetricValuesQueryParams struct {
 
 type ListAllMetricValuesRequest struct {
 	QueryParams ListAllMetricValuesQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListAllMetricValuesResponse struct {

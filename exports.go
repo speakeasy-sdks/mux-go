@@ -34,7 +34,7 @@ func newExports(defaultClient, securityClient HTTPClient, serverURL, language, s
 // The API has been replaced by the list-exports-views API call.
 //
 // Lists the available video view exports along with URLs to retrieve them.
-func (s *exports) ListExports(ctx context.Context) (*operations.ListExportsResponse, error) {
+func (s *exports) ListExports(ctx context.Context, request operations.ListExportsRequest) (*operations.ListExportsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/exports"
 
@@ -45,7 +45,28 @@ func (s *exports) ListExports(ctx context.Context) (*operations.ListExportsRespo
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -78,7 +99,7 @@ func (s *exports) ListExports(ctx context.Context) (*operations.ListExportsRespo
 
 // ListExportsViews - List available property view exports
 // Lists the available video view exports along with URLs to retrieve them.
-func (s *exports) ListExportsViews(ctx context.Context) (*operations.ListExportsViewsResponse, error) {
+func (s *exports) ListExportsViews(ctx context.Context, request operations.ListExportsViewsRequest) (*operations.ListExportsViewsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/exports/views"
 
@@ -89,7 +110,28 @@ func (s *exports) ListExportsViews(ctx context.Context) (*operations.ListExports
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

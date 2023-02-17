@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetMonitoringHistogramTimeseriesPathParams struct {
@@ -15,6 +16,7 @@ type GetMonitoringHistogramTimeseriesQueryParams struct {
 type GetMonitoringHistogramTimeseriesRequest struct {
 	PathParams  GetMonitoringHistogramTimeseriesPathParams
 	QueryParams GetMonitoringHistogramTimeseriesQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type GetMonitoringHistogramTimeseriesResponse struct {

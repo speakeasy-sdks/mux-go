@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type CancelDirectUploadPathParams struct {
@@ -10,6 +11,7 @@ type CancelDirectUploadPathParams struct {
 
 type CancelDirectUploadRequest struct {
 	PathParams CancelDirectUploadPathParams
+	Retries    *utils.RetryConfig
 }
 
 type CancelDirectUploadResponse struct {
