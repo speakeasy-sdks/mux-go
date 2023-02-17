@@ -6985,7 +6985,7 @@ components:
         format: int32
         default: 100
     asset_id:
-      # name: ASSET_ID
+      name: ASSET_ID
       in: path
       description: The asset ID.
       required: true
@@ -7013,7 +7013,7 @@ components:
       schema:
         type: string
     upload_id:
-      # name: UPLOAD_ID
+      name: UPLOAD_ID
       in: path
       description: ID of the Upload
       required: true
@@ -7193,7 +7193,7 @@ components:
       schema:
         type: string
     metric_id:
-      # name: METRIC_ID
+      name: METRIC_ID
       in: path
       description: ID of the Metric
       required: true
@@ -7271,7 +7271,7 @@ components:
           - asc
           - desc
     measurement:
-      # name: measurement
+      name: measurement
       in: query
       description: >-
         Measurement for the provided metric. If omitted, the default for the
@@ -7286,7 +7286,7 @@ components:
           - count
           - sum
     order_by:
-      # name: order_by
+      name: order_by
       in: query
       description: Value to order the results by
       required: false
@@ -7466,7 +7466,7 @@ components:
       schema:
         type: string
     timestamp:
-      # name: timestamp
+      name: timestamp
       in: query
       description: >-
         Timestamp to limit results by. This value must be provided as a unix
@@ -7476,7 +7476,7 @@ components:
         type: integer
         format: int32
     limit:
-      # name: limit
+      name: limit
       in: query
       description: Number of items to include in the response
       required: false
