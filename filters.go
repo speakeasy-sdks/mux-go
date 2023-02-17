@@ -1,0 +1,127 @@
+package mux
+
+import (
+	"context"
+	"fmt"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/operations"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
+	"strings"
+)
+
+type filters struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
+}
+
+func newFilters(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *filters {
+	return &filters{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
+	}
+}
+
+// ListFilterValues - Lists values for a specific filter
+// The API has been replaced by the list-dimension-values API call.
+//
+// Lists the values for a filter along with a total count of related views.
+func (s *filters) ListFilterValues(ctx context.Context, request operations.ListFilterValuesRequest) (*operations.ListFilterValuesResponse, error) {
+	baseURL := s.serverURL
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/filters/{FILTER_ID}", request.PathParams)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListFilterValuesResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.ListFilterValuesResponse
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.ListFilterValuesResponse = out
+		}
+	}
+
+	return res, nil
+}
+
+// ListFilters - List Filters
+// The API has been replaced by the list-dimensions API call.
+//
+// Lists all the filters broken out into basic and advanced.
+func (s *filters) ListFilters(ctx context.Context) (*operations.ListFiltersResponse, error) {
+	baseURL := s.serverURL
+	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/filters"
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.ListFiltersResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.ListFiltersResponse
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.ListFiltersResponse = out
+		}
+	}
+
+	return res, nil
+}
