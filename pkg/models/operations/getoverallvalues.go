@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetOverallValuesPathParams struct {
@@ -17,6 +18,7 @@ type GetOverallValuesQueryParams struct {
 type GetOverallValuesRequest struct {
 	PathParams  GetOverallValuesPathParams
 	QueryParams GetOverallValuesQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type GetOverallValuesResponse struct {

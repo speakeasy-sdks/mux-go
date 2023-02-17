@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetRealtimeTimeseriesPathParams struct {
@@ -15,6 +16,7 @@ type GetRealtimeTimeseriesQueryParams struct {
 type GetRealtimeTimeseriesRequest struct {
 	PathParams  GetRealtimeTimeseriesPathParams
 	QueryParams GetRealtimeTimeseriesQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type GetRealtimeTimeseriesResponse struct {

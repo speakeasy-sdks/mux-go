@@ -49,7 +49,28 @@ func (s *dimensions) ListDimensionValues(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -84,7 +105,7 @@ func (s *dimensions) ListDimensionValues(ctx context.Context, request operations
 // List all available dimensions.
 //
 // Note: This API replaces the list-filters API call.
-func (s *dimensions) ListDimensions(ctx context.Context) (*operations.ListDimensionsResponse, error) {
+func (s *dimensions) ListDimensions(ctx context.Context, request operations.ListDimensionsRequest) (*operations.ListDimensionsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/dimensions"
 
@@ -95,7 +116,28 @@ func (s *dimensions) ListDimensions(ctx context.Context) (*operations.ListDimens
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

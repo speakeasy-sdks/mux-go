@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
+)
+
 type DeleteAssetTrackPathParams struct {
 	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
 	TrackID string `pathParam:"style=simple,explode=false,name=TRACK_ID"`
@@ -7,6 +11,7 @@ type DeleteAssetTrackPathParams struct {
 
 type DeleteAssetTrackRequest struct {
 	PathParams DeleteAssetTrackPathParams
+	Retries    *utils.RetryConfig
 }
 
 type DeleteAssetTrackResponse struct {

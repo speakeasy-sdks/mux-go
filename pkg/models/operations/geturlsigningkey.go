@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type GetURLSigningKeyPathParams struct {
@@ -10,6 +11,7 @@ type GetURLSigningKeyPathParams struct {
 
 type GetURLSigningKeyRequest struct {
 	PathParams GetURLSigningKeyPathParams
+	Retries    *utils.RetryConfig
 }
 
 type GetURLSigningKeyResponse struct {

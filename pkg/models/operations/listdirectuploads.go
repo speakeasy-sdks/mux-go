@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListDirectUploadsQueryParams struct {
@@ -11,6 +12,7 @@ type ListDirectUploadsQueryParams struct {
 
 type ListDirectUploadsRequest struct {
 	QueryParams ListDirectUploadsQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListDirectUploadsResponse struct {

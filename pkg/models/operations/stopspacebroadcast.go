@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type StopSpaceBroadcastPathParams struct {
@@ -11,6 +12,7 @@ type StopSpaceBroadcastPathParams struct {
 
 type StopSpaceBroadcastRequest struct {
 	PathParams StopSpaceBroadcastPathParams
+	Retries    *utils.RetryConfig
 }
 
 type StopSpaceBroadcastResponse struct {

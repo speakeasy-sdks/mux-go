@@ -49,7 +49,28 @@ func (s *filters) ListFilterValues(ctx context.Context, request operations.ListF
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -84,7 +105,7 @@ func (s *filters) ListFilterValues(ctx context.Context, request operations.ListF
 // The API has been replaced by the list-dimensions API call.
 //
 // Lists all the filters broken out into basic and advanced.
-func (s *filters) ListFilters(ctx context.Context) (*operations.ListFiltersResponse, error) {
+func (s *filters) ListFilters(ctx context.Context, request operations.ListFiltersRequest) (*operations.ListFiltersResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/filters"
 
@@ -95,7 +116,28 @@ func (s *filters) ListFilters(ctx context.Context) (*operations.ListFiltersRespo
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListLiveStreamsQueryParams struct {
@@ -13,6 +14,7 @@ type ListLiveStreamsQueryParams struct {
 
 type ListLiveStreamsRequest struct {
 	QueryParams ListLiveStreamsQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListLiveStreamsResponse struct {

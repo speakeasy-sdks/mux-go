@@ -47,7 +47,28 @@ func (s *realTime) GetRealtimeBreakdown(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -95,7 +116,28 @@ func (s *realTime) GetRealtimeHistogramTimeseries(ctx context.Context, request o
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -143,7 +185,28 @@ func (s *realTime) GetRealtimeTimeseries(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -176,7 +239,7 @@ func (s *realTime) GetRealtimeTimeseries(ctx context.Context, request operations
 
 // ListRealtimeDimensions - List Real-Time Dimensions
 // Lists available real-time dimensions. This API is now deprecated, please use the `List Monitoring Dimensions` API.
-func (s *realTime) ListRealtimeDimensions(ctx context.Context) (*operations.ListRealtimeDimensionsResponse, error) {
+func (s *realTime) ListRealtimeDimensions(ctx context.Context, request operations.ListRealtimeDimensionsRequest) (*operations.ListRealtimeDimensionsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/realtime/dimensions"
 
@@ -187,7 +250,28 @@ func (s *realTime) ListRealtimeDimensions(ctx context.Context) (*operations.List
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}
@@ -220,7 +304,7 @@ func (s *realTime) ListRealtimeDimensions(ctx context.Context) (*operations.List
 
 // ListRealtimeMetrics - List Real-Time Metrics
 // Lists available real-time metrics. This API is now deprecated, please use the `List Monitoring Metrics` API.
-func (s *realTime) ListRealtimeMetrics(ctx context.Context) (*operations.ListRealtimeMetricsResponse, error) {
+func (s *realTime) ListRealtimeMetrics(ctx context.Context, request operations.ListRealtimeMetricsRequest) (*operations.ListRealtimeMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/realtime/metrics"
 
@@ -231,7 +315,28 @@ func (s *realTime) ListRealtimeMetrics(ctx context.Context) (*operations.ListRea
 
 	client := s.securityClient
 
-	httpRes, err := client.Do(req)
+	retryConfig := request.Retries
+	if retryConfig == nil {
+		retryConfig = &utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 500,
+				MaxInterval:     60000,
+				Exponent:        1.5,
+				MaxElapsedTime:  3600000,
+			},
+			RetryConnectionErrors: true,
+		}
+	}
+
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		return client.Do(req)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
 	}

@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListVideoViewsQueryParams struct {
@@ -16,6 +17,7 @@ type ListVideoViewsQueryParams struct {
 
 type ListVideoViewsRequest struct {
 	QueryParams ListVideoViewsQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListVideoViewsResponse struct {

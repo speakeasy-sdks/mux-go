@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type ListBreakdownValuesPathParams struct {
@@ -22,6 +23,7 @@ type ListBreakdownValuesQueryParams struct {
 type ListBreakdownValuesRequest struct {
 	PathParams  ListBreakdownValuesPathParams
 	QueryParams ListBreakdownValuesQueryParams
+	Retries     *utils.RetryConfig
 }
 
 type ListBreakdownValuesResponse struct {

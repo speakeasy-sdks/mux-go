@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type UpdateLiveStreamPathParams struct {
@@ -11,6 +12,7 @@ type UpdateLiveStreamPathParams struct {
 type UpdateLiveStreamRequest struct {
 	PathParams UpdateLiveStreamPathParams
 	Request    shared.UpdateLiveStreamRequest `request:"mediaType=application/json"`
+	Retries    *utils.RetryConfig
 }
 
 type UpdateLiveStreamResponse struct {

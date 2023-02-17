@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
+	"github.com/speakeasy-sdks/mux-go/pkg/models/utils"
 )
 
 type CreateSpaceBroadcastPathParams struct {
@@ -11,6 +12,7 @@ type CreateSpaceBroadcastPathParams struct {
 type CreateSpaceBroadcastRequest struct {
 	PathParams CreateSpaceBroadcastPathParams
 	Request    shared.CreateBroadcastRequest `request:"mediaType=application/json"`
+	Retries    *utils.RetryConfig
 }
 
 type CreateSpaceBroadcastResponse struct {
