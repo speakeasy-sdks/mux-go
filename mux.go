@@ -72,8 +72,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Mux {
 	sdk := &Mux{
 		_language:   "go",
-		_sdkVersion: "1.1.1",
-		_genVersion: "1.3.3",
+		_sdkVersion: "1.2.0",
+		_genVersion: "1.4.5",
 	}
 	for _, opt := range opts {
 		opt(sdk)
