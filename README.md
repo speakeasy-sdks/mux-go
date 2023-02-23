@@ -41,8 +41,8 @@ func main() {
         mux.WithSecurity(
             shared.Security{
                 AccessToken: shared.SchemeAccessToken{
-                    Password: "ACCESS_TOKEN_SECRET",
-                    Username: "ACCESS_TOKEN_ID",
+                    Password: "YOUR_PASSWORD_HERE",
+                    Username: "YOUR_USERNAME_HERE",
                 },
             }
         ),
