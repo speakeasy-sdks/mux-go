@@ -30,6 +30,7 @@ In this SDK you should be able to pass in the username (Access Token ID) and pas
 package main
 
 import (
+    "context"
     "log"
     "github.com/speakeasy-sdks/mux-go"
     "github.com/speakeasy-sdks/mux-go/pkg/models/shared"
@@ -44,7 +45,7 @@ func main() {
                     Password: "YOUR_PASSWORD_HERE",
                     Username: "YOUR_USERNAME_HERE",
                 },
-            }
+            },
         ),
     }
 
@@ -128,7 +129,8 @@ func main() {
             Test: true,
         },
     }
-    
+
+    ctx := context.Background()
     res, err := s.Assets.CreateAsset(ctx, req)
     if err != nil {
         log.Fatal(err)
@@ -137,6 +139,7 @@ func main() {
     if res.AssetResponse != nil {
         // handle response
     }
+}
 ```
 <!-- End SDK Example Usage -->
 

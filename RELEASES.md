@@ -39,3 +39,11 @@ Based on:
 - Speakeasy CLI 1.5.0 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v1.3.0] https://github.com/speakeasy-sdks/mux-go/releases/tag/v1.3.0 - .
+
+## Version 1.3.1
+### Changes
+Based on:
+- OpenAPI Doc v1 ./mux.yaml
+- Speakeasy CLI 1.5.3 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v1.3.1] https://github.com/speakeasy-sdks/mux-go/releases/tag/v1.3.1 - .
