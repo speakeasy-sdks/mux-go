@@ -11,18 +11,14 @@ import (
 )
 
 func main() {
-    opts := []mux.SDKOption{
-        mux.WithSecurity(
-            shared.Security{
-                AccessToken: shared.SchemeAccessToken{
-                    Password: "YOUR_PASSWORD_HERE",
-                    Username: "YOUR_USERNAME_HERE",
-                },
+    s := mux.New(mux.WithSecurity(
+        shared.Security{
+            AccessToken: shared.SchemeAccessToken{
+                Password: "YOUR_PASSWORD_HERE",
+                Username: "YOUR_USERNAME_HERE",
             },
-        ),
-    }
-
-    s := mux.New(opts...)
+        },
+    ))
     
     req := operations.CreateAssetRequest{
         Request: shared.CreateAssetRequest{
