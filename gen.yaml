@@ -1,12 +1,13 @@
 configVersion: 1.0.0
 management:
-    docChecksum: 02464a6e370047c0a18d338a0d43c0bc
-    docVersion: v1
-    speakeasyVersion: 1.6.0
+  docChecksum: 02464a6e370047c0a18d338a0d43c0bc
+  docVersion: v1
+  speakeasyVersion: 1.7.1
 generation:
-    comments: {}
-    telemetryEnabled: false
-    sdkClassName: mux
+  comments: {}
+  telemetryEnabled: false
+  sdkClassName: mux
+  sdkFlattening: false
 go:
-    version: 1.4.0
-    packageName: github.com/speakeasy-sdks/mux-go
+  version: 1.5.0
+  packageName: github.com/speakeasy-sdks/mux-go
