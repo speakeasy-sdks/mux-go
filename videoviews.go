@@ -78,6 +78,7 @@ func (s *videoViews) GetVideoView(ctx context.Context, request operations.GetVid
 	res := &operations.GetVideoViewResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -147,6 +148,7 @@ func (s *videoViews) ListVideoViews(ctx context.Context, request operations.List
 	res := &operations.ListVideoViewsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type GetLiveStreamPathParams struct {
@@ -18,4 +19,5 @@ type GetLiveStreamResponse struct {
 	ContentType        string
 	LiveStreamResponse *shared.LiveStreamResponse
 	StatusCode         int
+	RawResponse        *http.Response
 }

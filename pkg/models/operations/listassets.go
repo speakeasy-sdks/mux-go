@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type ListAssetsQueryParams struct {
@@ -21,4 +22,5 @@ type ListAssetsResponse struct {
 	ContentType        string
 	ListAssetsResponse *shared.ListAssetsResponse
 	StatusCode         int
+	RawResponse        *http.Response
 }

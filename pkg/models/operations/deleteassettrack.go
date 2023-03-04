@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type DeleteAssetTrackPathParams struct {
@@ -17,4 +18,5 @@ type DeleteAssetTrackRequest struct {
 type DeleteAssetTrackResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

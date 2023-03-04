@@ -80,6 +80,7 @@ func (s *directUploads) CancelDirectUpload(ctx context.Context, request operatio
 	res := &operations.CancelDirectUploadResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -156,6 +157,7 @@ func (s *directUploads) CreateDirectUpload(ctx context.Context, request operatio
 	res := &operations.CreateDirectUploadResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -221,6 +223,7 @@ func (s *directUploads) GetDirectUpload(ctx context.Context, request operations.
 	res := &operations.GetDirectUploadResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -290,6 +293,7 @@ func (s *directUploads) ListDirectUploads(ctx context.Context, request operation
 	res := &operations.ListDirectUploadsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

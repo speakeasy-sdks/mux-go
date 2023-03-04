@@ -88,6 +88,7 @@ func (s *assets) CreateAsset(ctx context.Context, request operations.CreateAsset
 	res := &operations.CreateAssetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -163,6 +164,7 @@ func (s *assets) CreateAssetPlaybackID(ctx context.Context, request operations.C
 	res := &operations.CreateAssetPlaybackIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -238,6 +240,7 @@ func (s *assets) CreateAssetTrack(ctx context.Context, request operations.Create
 	res := &operations.CreateAssetTrackResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -303,6 +306,7 @@ func (s *assets) DeleteAsset(ctx context.Context, request operations.DeleteAsset
 	res := &operations.DeleteAssetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -359,6 +363,7 @@ func (s *assets) DeleteAssetPlaybackID(ctx context.Context, request operations.D
 	res := &operations.DeleteAssetPlaybackIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -415,6 +420,7 @@ func (s *assets) DeleteAssetTrack(ctx context.Context, request operations.Delete
 	res := &operations.DeleteAssetTrackResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -471,6 +477,7 @@ func (s *assets) GetAsset(ctx context.Context, request operations.GetAssetReques
 	res := &operations.GetAssetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -536,6 +543,7 @@ func (s *assets) GetAssetInputInfo(ctx context.Context, request operations.GetAs
 	res := &operations.GetAssetInputInfoResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -601,6 +609,7 @@ func (s *assets) GetAssetPlaybackID(ctx context.Context, request operations.GetA
 	res := &operations.GetAssetPlaybackIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -670,6 +679,7 @@ func (s *assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 	res := &operations.ListAssetsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -745,6 +755,7 @@ func (s *assets) UpdateAsset(ctx context.Context, request operations.UpdateAsset
 	res := &operations.UpdateAssetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -821,6 +832,7 @@ func (s *assets) UpdateAssetMasterAccess(ctx context.Context, request operations
 	res := &operations.UpdateAssetMasterAccessResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -896,6 +908,7 @@ func (s *assets) UpdateAssetMp4Support(ctx context.Context, request operations.U
 	res := &operations.UpdateAssetMp4SupportResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

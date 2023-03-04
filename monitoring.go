@@ -82,6 +82,7 @@ func (s *monitoring) GetMonitoringBreakdown(ctx context.Context, request operati
 	res := &operations.GetMonitoringBreakdownResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -151,6 +152,7 @@ func (s *monitoring) GetMonitoringHistogramTimeseries(ctx context.Context, reque
 	res := &operations.GetMonitoringHistogramTimeseriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -220,6 +222,7 @@ func (s *monitoring) GetMonitoringTimeseries(ctx context.Context, request operat
 	res := &operations.GetMonitoringTimeseriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -285,6 +288,7 @@ func (s *monitoring) ListMonitoringDimensions(ctx context.Context, request opera
 	res := &operations.ListMonitoringDimensionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -350,6 +354,7 @@ func (s *monitoring) ListMonitoringMetrics(ctx context.Context, request operatio
 	res := &operations.ListMonitoringMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

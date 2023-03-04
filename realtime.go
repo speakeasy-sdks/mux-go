@@ -82,6 +82,7 @@ func (s *realTime) GetRealtimeBreakdown(ctx context.Context, request operations.
 	res := &operations.GetRealtimeBreakdownResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -151,6 +152,7 @@ func (s *realTime) GetRealtimeHistogramTimeseries(ctx context.Context, request o
 	res := &operations.GetRealtimeHistogramTimeseriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -220,6 +222,7 @@ func (s *realTime) GetRealtimeTimeseries(ctx context.Context, request operations
 	res := &operations.GetRealtimeTimeseriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -285,6 +288,7 @@ func (s *realTime) ListRealtimeDimensions(ctx context.Context, request operation
 	res := &operations.ListRealtimeDimensionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -350,6 +354,7 @@ func (s *realTime) ListRealtimeMetrics(ctx context.Context, request operations.L
 	res := &operations.ListRealtimeMetricsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

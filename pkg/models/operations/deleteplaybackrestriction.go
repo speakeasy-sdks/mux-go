@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type DeletePlaybackRestrictionPathParams struct {
@@ -16,4 +17,5 @@ type DeletePlaybackRestrictionRequest struct {
 type DeletePlaybackRestrictionResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

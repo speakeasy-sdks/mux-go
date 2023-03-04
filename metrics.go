@@ -87,6 +87,7 @@ func (s *metrics) GetMetricTimeseriesData(ctx context.Context, request operation
 	res := &operations.GetMetricTimeseriesDataResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -156,6 +157,7 @@ func (s *metrics) GetOverallValues(ctx context.Context, request operations.GetOv
 	res := &operations.GetOverallValuesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -225,6 +227,7 @@ func (s *metrics) ListAllMetricValues(ctx context.Context, request operations.Li
 	res := &operations.ListAllMetricValuesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -294,6 +297,7 @@ func (s *metrics) ListBreakdownValues(ctx context.Context, request operations.Li
 	res := &operations.ListBreakdownValuesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -363,6 +367,7 @@ func (s *metrics) ListInsights(ctx context.Context, request operations.ListInsig
 	res := &operations.ListInsightsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

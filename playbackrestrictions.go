@@ -88,6 +88,7 @@ func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, re
 	res := &operations.CreatePlaybackRestrictionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -153,6 +154,7 @@ func (s *playbackRestrictions) DeletePlaybackRestriction(ctx context.Context, re
 	res := &operations.DeletePlaybackRestrictionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -209,6 +211,7 @@ func (s *playbackRestrictions) GetPlaybackRestriction(ctx context.Context, reque
 	res := &operations.GetPlaybackRestrictionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -278,6 +281,7 @@ func (s *playbackRestrictions) ListPlaybackRestrictions(ctx context.Context, req
 	res := &operations.ListPlaybackRestrictionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -353,6 +357,7 @@ func (s *playbackRestrictions) UpdateReferrerDomainRestriction(ctx context.Conte
 	res := &operations.UpdateReferrerDomainRestrictionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

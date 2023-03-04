@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type ListDeliveryUsageQueryParams struct {
@@ -22,4 +23,5 @@ type ListDeliveryUsageResponse struct {
 	ContentType               string
 	ListDeliveryUsageResponse *shared.ListDeliveryUsageResponse
 	StatusCode                int
+	RawResponse               *http.Response
 }

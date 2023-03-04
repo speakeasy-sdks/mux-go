@@ -88,6 +88,7 @@ func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Co
 	res := &operations.CreateTranscriptionVocabularyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -153,6 +154,7 @@ func (s *transcriptionVocabularies) DeleteTranscriptionVocabulary(ctx context.Co
 	res := &operations.DeleteTranscriptionVocabularyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -209,6 +211,7 @@ func (s *transcriptionVocabularies) GetTranscriptionVocabulary(ctx context.Conte
 	res := &operations.GetTranscriptionVocabularyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -278,6 +281,7 @@ func (s *transcriptionVocabularies) ListTranscriptionVocabularies(ctx context.Co
 	res := &operations.ListTranscriptionVocabulariesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -353,6 +357,7 @@ func (s *transcriptionVocabularies) UpdateTranscriptionVocabulary(ctx context.Co
 	res := &operations.UpdateTranscriptionVocabularyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -78,6 +78,7 @@ func (s *urlSigningKeys) CreateURLSigningKey(ctx context.Context, request operat
 	res := &operations.CreateURLSigningKeyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -143,6 +144,7 @@ func (s *urlSigningKeys) DeleteURLSigningKey(ctx context.Context, request operat
 	res := &operations.DeleteURLSigningKeyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -202,6 +204,7 @@ func (s *urlSigningKeys) GetURLSigningKey(ctx context.Context, request operation
 	res := &operations.GetURLSigningKeyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -271,6 +274,7 @@ func (s *urlSigningKeys) ListURLSigningKeys(ctx context.Context, request operati
 	res := &operations.ListURLSigningKeysResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

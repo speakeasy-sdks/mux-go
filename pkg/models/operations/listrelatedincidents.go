@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type ListRelatedIncidentsPathParams struct {
@@ -26,4 +27,5 @@ type ListRelatedIncidentsResponse struct {
 	ContentType                  string
 	ListRelatedIncidentsResponse *shared.ListRelatedIncidentsResponse
 	StatusCode                   int
+	RawResponse                  *http.Response
 }

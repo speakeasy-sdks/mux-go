@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type GetRealtimeHistogramTimeseriesPathParams struct {
@@ -23,4 +24,5 @@ type GetRealtimeHistogramTimeseriesResponse struct {
 	ContentType                            string
 	GetRealTimeHistogramTimeseriesResponse *shared.GetRealTimeHistogramTimeseriesResponse
 	StatusCode                             int
+	RawResponse                            *http.Response
 }

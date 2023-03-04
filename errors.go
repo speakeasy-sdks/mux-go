@@ -82,6 +82,7 @@ func (s *errors) ListErrors(ctx context.Context, request operations.ListErrorsRe
 	res := &operations.ListErrorsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

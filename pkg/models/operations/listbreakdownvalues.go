@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type ListBreakdownValuesPathParams struct {
@@ -30,4 +31,5 @@ type ListBreakdownValuesResponse struct {
 	ContentType                 string
 	ListBreakdownValuesResponse *shared.ListBreakdownValuesResponse
 	StatusCode                  int
+	RawResponse                 *http.Response
 }

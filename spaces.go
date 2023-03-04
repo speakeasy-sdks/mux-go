@@ -88,6 +88,7 @@ func (s *spaces) CreateSpace(ctx context.Context, request operations.CreateSpace
 	res := &operations.CreateSpaceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -164,6 +165,7 @@ func (s *spaces) CreateSpaceBroadcast(ctx context.Context, request operations.Cr
 	res := &operations.CreateSpaceBroadcastResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -229,6 +231,7 @@ func (s *spaces) DeleteSpace(ctx context.Context, request operations.DeleteSpace
 	res := &operations.DeleteSpaceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -285,6 +288,7 @@ func (s *spaces) DeleteSpaceBroadcast(ctx context.Context, request operations.De
 	res := &operations.DeleteSpaceBroadcastResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -341,6 +345,7 @@ func (s *spaces) GetSpace(ctx context.Context, request operations.GetSpaceReques
 	res := &operations.GetSpaceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -406,6 +411,7 @@ func (s *spaces) GetSpaceBroadcast(ctx context.Context, request operations.GetSp
 	res := &operations.GetSpaceBroadcastResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -475,6 +481,7 @@ func (s *spaces) ListSpaces(ctx context.Context, request operations.ListSpacesRe
 	res := &operations.ListSpacesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -540,6 +547,7 @@ func (s *spaces) StartSpaceBroadcast(ctx context.Context, request operations.Sta
 	res := &operations.StartSpaceBroadcastResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -606,6 +614,7 @@ func (s *spaces) StopSpaceBroadcast(ctx context.Context, request operations.Stop
 	res := &operations.StopSpaceBroadcastResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -84,6 +84,7 @@ func (s *dimensions) ListDimensionValues(ctx context.Context, request operations
 	res := &operations.ListDimensionValuesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -151,6 +152,7 @@ func (s *dimensions) ListDimensions(ctx context.Context, request operations.List
 	res := &operations.ListDimensionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

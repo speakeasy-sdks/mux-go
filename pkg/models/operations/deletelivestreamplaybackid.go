@@ -2,6 +2,7 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type DeleteLiveStreamPlaybackIDPathParams struct {
@@ -17,4 +18,5 @@ type DeleteLiveStreamPlaybackIDRequest struct {
 type DeleteLiveStreamPlaybackIDResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

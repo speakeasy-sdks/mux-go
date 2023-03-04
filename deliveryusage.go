@@ -82,6 +82,7 @@ func (s *deliveryUsage) ListDeliveryUsage(ctx context.Context, request operation
 	res := &operations.ListDeliveryUsageResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

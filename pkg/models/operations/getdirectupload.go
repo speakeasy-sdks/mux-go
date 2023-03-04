@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type GetDirectUploadPathParams struct {
@@ -17,5 +18,6 @@ type GetDirectUploadRequest struct {
 type GetDirectUploadResponse struct {
 	ContentType    string
 	StatusCode     int
+	RawResponse    *http.Response
 	UploadResponse *shared.UploadResponse
 }
