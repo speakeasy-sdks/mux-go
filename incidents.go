@@ -78,6 +78,7 @@ func (s *incidents) GetIncident(ctx context.Context, request operations.GetIncid
 	res := &operations.GetIncidentResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -147,6 +148,7 @@ func (s *incidents) ListIncidents(ctx context.Context, request operations.ListIn
 	res := &operations.ListIncidentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -216,6 +218,7 @@ func (s *incidents) ListRelatedIncidents(ctx context.Context, request operations
 	res := &operations.ListRelatedIncidentsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

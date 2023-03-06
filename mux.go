@@ -15,6 +15,10 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
+// SDK Documentation: Mux is how developers build online video. This API encompasses both Mux Video and Mux Data functionality to help you build your video-related projects better and faster than ever before.
 type Mux struct {
 	Assets                    *assets
 	DeliveryUsage             *deliveryUsage
@@ -47,7 +51,13 @@ type Mux struct {
 
 type SDKOption func(*Mux)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *Mux) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *Mux) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -72,8 +82,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Mux {
 	sdk := &Mux{
 		_language:   "go",
-		_sdkVersion: "1.4.0",
-		_genVersion: "1.6.0",
+		_sdkVersion: "1.6.1",
+		_genVersion: "1.8.4",
 	}
 	for _, opt := range opts {
 		opt(sdk)

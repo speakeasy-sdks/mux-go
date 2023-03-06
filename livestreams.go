@@ -88,6 +88,7 @@ func (s *liveStreams) CreateLiveStream(ctx context.Context, request operations.C
 	res := &operations.CreateLiveStreamResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -163,6 +164,7 @@ func (s *liveStreams) CreateLiveStreamPlaybackID(ctx context.Context, request op
 	res := &operations.CreateLiveStreamPlaybackIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -238,6 +240,7 @@ func (s *liveStreams) CreateLiveStreamSimulcastTarget(ctx context.Context, reque
 	res := &operations.CreateLiveStreamSimulcastTargetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -303,6 +306,7 @@ func (s *liveStreams) DeleteLiveStream(ctx context.Context, request operations.D
 	res := &operations.DeleteLiveStreamResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -359,6 +363,7 @@ func (s *liveStreams) DeleteLiveStreamPlaybackID(ctx context.Context, request op
 	res := &operations.DeleteLiveStreamPlaybackIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -415,6 +420,7 @@ func (s *liveStreams) DeleteLiveStreamSimulcastTarget(ctx context.Context, reque
 	res := &operations.DeleteLiveStreamSimulcastTargetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:
@@ -473,6 +479,7 @@ func (s *liveStreams) DisableLiveStream(ctx context.Context, request operations.
 	res := &operations.DisableLiveStreamResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -538,6 +545,7 @@ func (s *liveStreams) EnableLiveStream(ctx context.Context, request operations.E
 	res := &operations.EnableLiveStreamResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -603,6 +611,7 @@ func (s *liveStreams) GetLiveStream(ctx context.Context, request operations.GetL
 	res := &operations.GetLiveStreamResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -668,6 +677,7 @@ func (s *liveStreams) GetLiveStreamPlaybackID(ctx context.Context, request opera
 	res := &operations.GetLiveStreamPlaybackIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -733,6 +743,7 @@ func (s *liveStreams) GetLiveStreamSimulcastTarget(ctx context.Context, request 
 	res := &operations.GetLiveStreamSimulcastTargetResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -802,6 +813,7 @@ func (s *liveStreams) ListLiveStreams(ctx context.Context, request operations.Li
 	res := &operations.ListLiveStreamsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -867,6 +879,7 @@ func (s *liveStreams) ResetStreamKey(ctx context.Context, request operations.Res
 	res := &operations.ResetStreamKeyResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -934,6 +947,7 @@ func (s *liveStreams) SignalLiveStreamComplete(ctx context.Context, request oper
 	res := &operations.SignalLiveStreamCompleteResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1009,6 +1023,7 @@ func (s *liveStreams) UpdateLiveStream(ctx context.Context, request operations.U
 	res := &operations.UpdateLiveStreamResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1085,6 +1100,7 @@ func (s *liveStreams) UpdateLiveStreamEmbeddedSubtitles(ctx context.Context, req
 	res := &operations.UpdateLiveStreamEmbeddedSubtitlesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -1162,6 +1178,7 @@ func (s *liveStreams) UpdateLiveStreamGeneratedSubtitles(ctx context.Context, re
 	res := &operations.UpdateLiveStreamGeneratedSubtitlesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

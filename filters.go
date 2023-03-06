@@ -84,6 +84,7 @@ func (s *filters) ListFilterValues(ctx context.Context, request operations.ListF
 	res := &operations.ListFilterValuesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -151,6 +152,7 @@ func (s *filters) ListFilters(ctx context.Context, request operations.ListFilter
 	res := &operations.ListFiltersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

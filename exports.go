@@ -80,6 +80,7 @@ func (s *exports) ListExports(ctx context.Context, request operations.ListExport
 	res := &operations.ListExportsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -145,6 +146,7 @@ func (s *exports) ListExportsViews(ctx context.Context, request operations.ListE
 	res := &operations.ListExportsViewsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

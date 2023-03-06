@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type ListAllMetricValuesQueryParams struct {
@@ -21,4 +22,5 @@ type ListAllMetricValuesResponse struct {
 	ContentType                 string
 	ListAllMetricValuesResponse *shared.ListAllMetricValuesResponse
 	StatusCode                  int
+	RawResponse                 *http.Response
 }

@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type ListInsightsPathParams struct {
@@ -25,4 +26,5 @@ type ListInsightsResponse struct {
 	ContentType          string
 	ListInsightsResponse *shared.ListInsightsResponse
 	StatusCode           int
+	RawResponse          *http.Response
 }

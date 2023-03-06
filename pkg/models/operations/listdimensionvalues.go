@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type ListDimensionValuesPathParams struct {
@@ -26,4 +27,5 @@ type ListDimensionValuesResponse struct {
 	ContentType                 string
 	ListDimensionValuesResponse *shared.ListDimensionValuesResponse
 	StatusCode                  int
+	RawResponse                 *http.Response
 }

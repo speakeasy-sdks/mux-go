@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type GetOverallValuesPathParams struct {
@@ -25,4 +26,5 @@ type GetOverallValuesResponse struct {
 	ContentType              string
 	GetOverallValuesResponse *shared.GetOverallValuesResponse
 	StatusCode               int
+	RawResponse              *http.Response
 }

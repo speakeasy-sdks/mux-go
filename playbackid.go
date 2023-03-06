@@ -77,6 +77,7 @@ func (s *playbackID) GetAssetOrLivestreamID(ctx context.Context, request operati
 	res := &operations.GetAssetOrLivestreamIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

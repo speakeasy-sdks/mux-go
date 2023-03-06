@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type StartSpaceBroadcastPathParams struct {
@@ -19,4 +20,5 @@ type StartSpaceBroadcastResponse struct {
 	ContentType                 string
 	StartSpaceBroadcastResponse *shared.StartSpaceBroadcastResponse
 	StatusCode                  int
+	RawResponse                 *http.Response
 }

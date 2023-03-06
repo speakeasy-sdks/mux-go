@@ -29,7 +29,6 @@ pkg/utils/requestbody.go
 pkg/utils/retries.go
 pkg/utils/security.go
 pkg/utils/utils.go
-strings.go
 pkg/models/operations/createasset.go
 pkg/models/operations/createassetplaybackid.go
 pkg/models/operations/createassettrack.go

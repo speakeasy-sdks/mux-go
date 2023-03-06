@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type GetMonitoringBreakdownPathParams struct {
@@ -27,4 +28,5 @@ type GetMonitoringBreakdownResponse struct {
 	ContentType                    string
 	GetMonitoringBreakdownResponse *shared.GetMonitoringBreakdownResponse
 	StatusCode                     int
+	RawResponse                    *http.Response
 }

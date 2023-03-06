@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type GetAssetPlaybackIDPathParams struct {
@@ -19,4 +20,5 @@ type GetAssetPlaybackIDResponse struct {
 	ContentType                string
 	GetAssetPlaybackIDResponse *shared.GetAssetPlaybackIDResponse
 	StatusCode                 int
+	RawResponse                *http.Response
 }

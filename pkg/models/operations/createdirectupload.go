@@ -3,6 +3,7 @@ package operations
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
 	"github.com/speakeasy-sdks/mux-go/pkg/utils"
+	"net/http"
 )
 
 type CreateDirectUploadRequest struct {
@@ -13,5 +14,6 @@ type CreateDirectUploadRequest struct {
 type CreateDirectUploadResponse struct {
 	ContentType    string
 	StatusCode     int
+	RawResponse    *http.Response
 	UploadResponse *shared.UploadResponse
 }
