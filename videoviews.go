@@ -32,7 +32,17 @@ func newVideoViews(defaultClient, securityClient HTTPClient, serverURL, language
 
 // GetVideoView - Get a Video View
 // Returns the details of a video view.
-func (s *videoViews) GetVideoView(ctx context.Context, request operations.GetVideoViewRequest) (*operations.GetVideoViewResponse, error) {
+func (s *videoViews) GetVideoView(ctx context.Context, request operations.GetVideoViewRequest, opts ...operations.Option) (*operations.GetVideoViewResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/video-views/{VIDEO_VIEW_ID}", request.PathParams)
 
@@ -43,7 +53,7 @@ func (s *videoViews) GetVideoView(ctx context.Context, request operations.GetVid
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -98,7 +108,17 @@ func (s *videoViews) GetVideoView(ctx context.Context, request operations.GetVid
 
 // ListVideoViews - List Video Views
 // Returns a list of video views which match the filters and have a `view_end` within the specified timeframe.
-func (s *videoViews) ListVideoViews(ctx context.Context, request operations.ListVideoViewsRequest) (*operations.ListVideoViewsResponse, error) {
+func (s *videoViews) ListVideoViews(ctx context.Context, request operations.ListVideoViewsRequest, opts ...operations.Option) (*operations.ListVideoViewsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/video-views"
 
@@ -113,7 +133,7 @@ func (s *videoViews) ListVideoViews(ctx context.Context, request operations.List
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

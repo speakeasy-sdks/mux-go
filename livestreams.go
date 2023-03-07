@@ -32,7 +32,17 @@ func newLiveStreams(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // CreateLiveStream - Create a live stream
 // Creates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin streaming to an audience.
-func (s *liveStreams) CreateLiveStream(ctx context.Context, request operations.CreateLiveStreamRequest) (*operations.CreateLiveStreamResponse, error) {
+func (s *liveStreams) CreateLiveStream(ctx context.Context, request operations.CreateLiveStreamRequest, opts ...operations.Option) (*operations.CreateLiveStreamResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/live-streams"
 
@@ -53,7 +63,7 @@ func (s *liveStreams) CreateLiveStream(ctx context.Context, request operations.C
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -108,7 +118,17 @@ func (s *liveStreams) CreateLiveStream(ctx context.Context, request operations.C
 
 // CreateLiveStreamPlaybackID - Create a live stream playback ID
 // Create a new playback ID for this live stream, through which a viewer can watch the streamed content of the live stream.
-func (s *liveStreams) CreateLiveStreamPlaybackID(ctx context.Context, request operations.CreateLiveStreamPlaybackIDRequest) (*operations.CreateLiveStreamPlaybackIDResponse, error) {
+func (s *liveStreams) CreateLiveStreamPlaybackID(ctx context.Context, request operations.CreateLiveStreamPlaybackIDRequest, opts ...operations.Option) (*operations.CreateLiveStreamPlaybackIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids", request.PathParams)
 
@@ -129,7 +149,7 @@ func (s *liveStreams) CreateLiveStreamPlaybackID(ctx context.Context, request op
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -184,7 +204,17 @@ func (s *liveStreams) CreateLiveStreamPlaybackID(ctx context.Context, request op
 
 // CreateLiveStreamSimulcastTarget - Create a live stream simulcast target
 // Create a simulcast target for the parent live stream. Simulcast target can only be created when the parent live stream is in idle state. Only one simulcast target can be created at a time with this API.
-func (s *liveStreams) CreateLiveStreamSimulcastTarget(ctx context.Context, request operations.CreateLiveStreamSimulcastTargetRequest) (*operations.CreateLiveStreamSimulcastTargetResponse, error) {
+func (s *liveStreams) CreateLiveStreamSimulcastTarget(ctx context.Context, request operations.CreateLiveStreamSimulcastTargetRequest, opts ...operations.Option) (*operations.CreateLiveStreamSimulcastTargetResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets", request.PathParams)
 
@@ -205,7 +235,7 @@ func (s *liveStreams) CreateLiveStreamSimulcastTarget(ctx context.Context, reque
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -260,7 +290,17 @@ func (s *liveStreams) CreateLiveStreamSimulcastTarget(ctx context.Context, reque
 
 // DeleteLiveStream - Delete a live stream
 // Deletes a live stream from the current environment. If the live stream is currently active and being streamed to, ingest will be terminated and the encoder will be disconnected.
-func (s *liveStreams) DeleteLiveStream(ctx context.Context, request operations.DeleteLiveStreamRequest) (*operations.DeleteLiveStreamResponse, error) {
+func (s *liveStreams) DeleteLiveStream(ctx context.Context, request operations.DeleteLiveStreamRequest, opts ...operations.Option) (*operations.DeleteLiveStreamResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request.PathParams)
 
@@ -271,7 +311,7 @@ func (s *liveStreams) DeleteLiveStream(ctx context.Context, request operations.D
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -317,7 +357,17 @@ func (s *liveStreams) DeleteLiveStream(ctx context.Context, request operations.D
 
 // DeleteLiveStreamPlaybackID - Delete a live stream playback ID
 // Deletes the playback ID for the live stream. This will not disable ingest (as the live stream still exists). New attempts to play back the live stream will fail immediately. However, current viewers will be able to continue watching the stream for some period of time.
-func (s *liveStreams) DeleteLiveStreamPlaybackID(ctx context.Context, request operations.DeleteLiveStreamPlaybackIDRequest) (*operations.DeleteLiveStreamPlaybackIDResponse, error) {
+func (s *liveStreams) DeleteLiveStreamPlaybackID(ctx context.Context, request operations.DeleteLiveStreamPlaybackIDRequest, opts ...operations.Option) (*operations.DeleteLiveStreamPlaybackIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
 
@@ -328,7 +378,7 @@ func (s *liveStreams) DeleteLiveStreamPlaybackID(ctx context.Context, request op
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -374,7 +424,17 @@ func (s *liveStreams) DeleteLiveStreamPlaybackID(ctx context.Context, request op
 
 // DeleteLiveStreamSimulcastTarget - Delete a Live Stream Simulcast Target
 // Delete the simulcast target using the simulcast target ID returned when creating the simulcast target. Simulcast Target can only be deleted when the parent live stream is in idle state.
-func (s *liveStreams) DeleteLiveStreamSimulcastTarget(ctx context.Context, request operations.DeleteLiveStreamSimulcastTargetRequest) (*operations.DeleteLiveStreamSimulcastTargetResponse, error) {
+func (s *liveStreams) DeleteLiveStreamSimulcastTarget(ctx context.Context, request operations.DeleteLiveStreamSimulcastTargetRequest, opts ...operations.Option) (*operations.DeleteLiveStreamSimulcastTargetResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}", request.PathParams)
 
@@ -385,7 +445,7 @@ func (s *liveStreams) DeleteLiveStreamSimulcastTarget(ctx context.Context, reque
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -433,7 +493,17 @@ func (s *liveStreams) DeleteLiveStreamSimulcastTarget(ctx context.Context, reque
 // Disables a live stream, making it reject incoming RTMP streams until re-enabled. The API also ends the live stream recording immediately when active. Ending the live stream recording adds the `EXT-X-ENDLIST` tag to the HLS manifest which notifies the player that this live stream is over.
 //
 // Mux also closes the encoder connection immediately. Any attempt from the encoder to re-establish connection will fail till the live stream is re-enabled.
-func (s *liveStreams) DisableLiveStream(ctx context.Context, request operations.DisableLiveStreamRequest) (*operations.DisableLiveStreamResponse, error) {
+func (s *liveStreams) DisableLiveStream(ctx context.Context, request operations.DisableLiveStreamRequest, opts ...operations.Option) (*operations.DisableLiveStreamResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/disable", request.PathParams)
 
@@ -444,7 +514,7 @@ func (s *liveStreams) DisableLiveStream(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -499,7 +569,17 @@ func (s *liveStreams) DisableLiveStream(ctx context.Context, request operations.
 
 // EnableLiveStream - Enable a live stream
 // Enables a live stream, allowing it to accept an incoming RTMP stream.
-func (s *liveStreams) EnableLiveStream(ctx context.Context, request operations.EnableLiveStreamRequest) (*operations.EnableLiveStreamResponse, error) {
+func (s *liveStreams) EnableLiveStream(ctx context.Context, request operations.EnableLiveStreamRequest, opts ...operations.Option) (*operations.EnableLiveStreamResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/enable", request.PathParams)
 
@@ -510,7 +590,7 @@ func (s *liveStreams) EnableLiveStream(ctx context.Context, request operations.E
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -565,7 +645,17 @@ func (s *liveStreams) EnableLiveStream(ctx context.Context, request operations.E
 
 // GetLiveStream - Retrieve a live stream
 // Retrieves the details of a live stream that has previously been created. Supply the unique live stream ID that was returned from your previous request, and Mux will return the corresponding live stream information. The same information is returned when creating a live stream.
-func (s *liveStreams) GetLiveStream(ctx context.Context, request operations.GetLiveStreamRequest) (*operations.GetLiveStreamResponse, error) {
+func (s *liveStreams) GetLiveStream(ctx context.Context, request operations.GetLiveStreamRequest, opts ...operations.Option) (*operations.GetLiveStreamResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request.PathParams)
 
@@ -576,7 +666,7 @@ func (s *liveStreams) GetLiveStream(ctx context.Context, request operations.GetL
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -631,7 +721,17 @@ func (s *liveStreams) GetLiveStream(ctx context.Context, request operations.GetL
 
 // GetLiveStreamPlaybackID - Retrieve a live stream playback ID
 // Fetches information about a live stream's playback ID, through which a viewer can watch the streamed content from this live stream.
-func (s *liveStreams) GetLiveStreamPlaybackID(ctx context.Context, request operations.GetLiveStreamPlaybackIDRequest) (*operations.GetLiveStreamPlaybackIDResponse, error) {
+func (s *liveStreams) GetLiveStreamPlaybackID(ctx context.Context, request operations.GetLiveStreamPlaybackIDRequest, opts ...operations.Option) (*operations.GetLiveStreamPlaybackIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
 
@@ -642,7 +742,7 @@ func (s *liveStreams) GetLiveStreamPlaybackID(ctx context.Context, request opera
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -697,7 +797,17 @@ func (s *liveStreams) GetLiveStreamPlaybackID(ctx context.Context, request opera
 
 // GetLiveStreamSimulcastTarget - Retrieve a Live Stream Simulcast Target
 // Retrieves the details of the simulcast target created for the parent live stream. Supply the unique live stream ID and simulcast target ID that was returned in the response of create simulcast target request, and Mux will return the corresponding information.
-func (s *liveStreams) GetLiveStreamSimulcastTarget(ctx context.Context, request operations.GetLiveStreamSimulcastTargetRequest) (*operations.GetLiveStreamSimulcastTargetResponse, error) {
+func (s *liveStreams) GetLiveStreamSimulcastTarget(ctx context.Context, request operations.GetLiveStreamSimulcastTargetRequest, opts ...operations.Option) (*operations.GetLiveStreamSimulcastTargetResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}", request.PathParams)
 
@@ -708,7 +818,7 @@ func (s *liveStreams) GetLiveStreamSimulcastTarget(ctx context.Context, request 
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -763,7 +873,17 @@ func (s *liveStreams) GetLiveStreamSimulcastTarget(ctx context.Context, request 
 
 // ListLiveStreams - List live streams
 // Lists the live streams that currently exist in the current environment.
-func (s *liveStreams) ListLiveStreams(ctx context.Context, request operations.ListLiveStreamsRequest) (*operations.ListLiveStreamsResponse, error) {
+func (s *liveStreams) ListLiveStreams(ctx context.Context, request operations.ListLiveStreamsRequest, opts ...operations.Option) (*operations.ListLiveStreamsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/live-streams"
 
@@ -778,7 +898,7 @@ func (s *liveStreams) ListLiveStreams(ctx context.Context, request operations.Li
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -833,7 +953,17 @@ func (s *liveStreams) ListLiveStreams(ctx context.Context, request operations.Li
 
 // ResetStreamKey - Reset a live stream's stream key
 // Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.
-func (s *liveStreams) ResetStreamKey(ctx context.Context, request operations.ResetStreamKeyRequest) (*operations.ResetStreamKeyResponse, error) {
+func (s *liveStreams) ResetStreamKey(ctx context.Context, request operations.ResetStreamKeyRequest, opts ...operations.Option) (*operations.ResetStreamKeyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key", request.PathParams)
 
@@ -844,7 +974,7 @@ func (s *liveStreams) ResetStreamKey(ctx context.Context, request operations.Res
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -901,7 +1031,17 @@ func (s *liveStreams) ResetStreamKey(ctx context.Context, request operations.Res
 // (Optional) End the live stream recording immediately instead of waiting for the reconnect_window. `EXT-X-ENDLIST` tag is added to the HLS manifest which notifies the player that this live stream is over.
 //
 // Mux does not close the encoder connection immediately. Encoders are often configured to re-establish connections immediately which would result in a new recorded asset. For this reason, Mux waits for 60s before closing the connection with the encoder. This 60s timeframe is meant to give encoder operators a chance to disconnect from their end.
-func (s *liveStreams) SignalLiveStreamComplete(ctx context.Context, request operations.SignalLiveStreamCompleteRequest) (*operations.SignalLiveStreamCompleteResponse, error) {
+func (s *liveStreams) SignalLiveStreamComplete(ctx context.Context, request operations.SignalLiveStreamCompleteRequest, opts ...operations.Option) (*operations.SignalLiveStreamCompleteResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/complete", request.PathParams)
 
@@ -912,7 +1052,7 @@ func (s *liveStreams) SignalLiveStreamComplete(ctx context.Context, request oper
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -967,7 +1107,17 @@ func (s *liveStreams) SignalLiveStreamComplete(ctx context.Context, request oper
 
 // UpdateLiveStream - Update a live stream
 // Updates the parameters of a previously-created live stream. This currently supports a subset of variables. Supply the live stream ID and the updated parameters and Mux will return the corresponding live stream information. The information returned will be the same after update as for subsequent get live stream requests.
-func (s *liveStreams) UpdateLiveStream(ctx context.Context, request operations.UpdateLiveStreamRequest) (*operations.UpdateLiveStreamResponse, error) {
+func (s *liveStreams) UpdateLiveStream(ctx context.Context, request operations.UpdateLiveStreamRequest, opts ...operations.Option) (*operations.UpdateLiveStreamResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request.PathParams)
 
@@ -988,7 +1138,7 @@ func (s *liveStreams) UpdateLiveStream(ctx context.Context, request operations.U
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -1044,7 +1194,17 @@ func (s *liveStreams) UpdateLiveStream(ctx context.Context, request operations.U
 // UpdateLiveStreamEmbeddedSubtitles - Update a live stream's embedded subtitles
 // Configures a live stream to receive embedded closed captions.
 // The resulting Asset's subtitle text track will have `closed_captions: true` set.
-func (s *liveStreams) UpdateLiveStreamEmbeddedSubtitles(ctx context.Context, request operations.UpdateLiveStreamEmbeddedSubtitlesRequest) (*operations.UpdateLiveStreamEmbeddedSubtitlesResponse, error) {
+func (s *liveStreams) UpdateLiveStreamEmbeddedSubtitles(ctx context.Context, request operations.UpdateLiveStreamEmbeddedSubtitlesRequest, opts ...operations.Option) (*operations.UpdateLiveStreamEmbeddedSubtitlesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles", request.PathParams)
 
@@ -1065,7 +1225,7 @@ func (s *liveStreams) UpdateLiveStreamEmbeddedSubtitles(ctx context.Context, req
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -1122,7 +1282,17 @@ func (s *liveStreams) UpdateLiveStreamEmbeddedSubtitles(ctx context.Context, req
 // Updates a live stream's automatic-speech-recognition-generated subtitle configuration.
 // Automatic speech recognition subtitles can be removed by sending an empty array in the
 // request payload.
-func (s *liveStreams) UpdateLiveStreamGeneratedSubtitles(ctx context.Context, request operations.UpdateLiveStreamGeneratedSubtitlesRequest) (*operations.UpdateLiveStreamGeneratedSubtitlesResponse, error) {
+func (s *liveStreams) UpdateLiveStreamGeneratedSubtitles(ctx context.Context, request operations.UpdateLiveStreamGeneratedSubtitlesRequest, opts ...operations.Option) (*operations.UpdateLiveStreamGeneratedSubtitlesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles", request.PathParams)
 
@@ -1143,7 +1313,7 @@ func (s *liveStreams) UpdateLiveStreamGeneratedSubtitles(ctx context.Context, re
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

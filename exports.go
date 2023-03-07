@@ -34,7 +34,17 @@ func newExports(defaultClient, securityClient HTTPClient, serverURL, language, s
 // The API has been replaced by the list-exports-views API call.
 //
 // Lists the available video view exports along with URLs to retrieve them.
-func (s *exports) ListExports(ctx context.Context, request operations.ListExportsRequest) (*operations.ListExportsResponse, error) {
+func (s *exports) ListExports(ctx context.Context, opts ...operations.Option) (*operations.ListExportsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/exports"
 
@@ -45,7 +55,7 @@ func (s *exports) ListExports(ctx context.Context, request operations.ListExport
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -100,7 +110,17 @@ func (s *exports) ListExports(ctx context.Context, request operations.ListExport
 
 // ListExportsViews - List available property view exports
 // Lists the available video view exports along with URLs to retrieve them.
-func (s *exports) ListExportsViews(ctx context.Context, request operations.ListExportsViewsRequest) (*operations.ListExportsViewsResponse, error) {
+func (s *exports) ListExportsViews(ctx context.Context, opts ...operations.Option) (*operations.ListExportsViewsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/exports/views"
 
@@ -111,7 +131,7 @@ func (s *exports) ListExportsViews(ctx context.Context, request operations.ListE
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

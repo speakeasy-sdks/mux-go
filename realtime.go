@@ -32,7 +32,17 @@ func newRealTime(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // GetRealtimeBreakdown - Get Real-Time Breakdown
 // Gets breakdown information for a specific dimension and metric along with the number of concurrent viewers and negative impact score. This API is now deprecated, please use the `Get Monitoring Breakdown` API.
-func (s *realTime) GetRealtimeBreakdown(ctx context.Context, request operations.GetRealtimeBreakdownRequest) (*operations.GetRealtimeBreakdownResponse, error) {
+func (s *realTime) GetRealtimeBreakdown(ctx context.Context, request operations.GetRealtimeBreakdownRequest, opts ...operations.Option) (*operations.GetRealtimeBreakdownResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/realtime/metrics/{REALTIME_METRIC_ID}/breakdown", request.PathParams)
 
@@ -47,7 +57,7 @@ func (s *realTime) GetRealtimeBreakdown(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -102,7 +112,17 @@ func (s *realTime) GetRealtimeBreakdown(ctx context.Context, request operations.
 
 // GetRealtimeHistogramTimeseries - Get Real-Time Histogram Timeseries
 // Gets histogram timeseries information for a specific metric. This API is now deprecated, please use the `Get Monitoring Histogram Timeseries` API.
-func (s *realTime) GetRealtimeHistogramTimeseries(ctx context.Context, request operations.GetRealtimeHistogramTimeseriesRequest) (*operations.GetRealtimeHistogramTimeseriesResponse, error) {
+func (s *realTime) GetRealtimeHistogramTimeseries(ctx context.Context, request operations.GetRealtimeHistogramTimeseriesRequest, opts ...operations.Option) (*operations.GetRealtimeHistogramTimeseriesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/realtime/metrics/{REALTIME_HISTOGRAM_METRIC_ID}/histogram-timeseries", request.PathParams)
 
@@ -117,7 +137,7 @@ func (s *realTime) GetRealtimeHistogramTimeseries(ctx context.Context, request o
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -172,7 +192,17 @@ func (s *realTime) GetRealtimeHistogramTimeseries(ctx context.Context, request o
 
 // GetRealtimeTimeseries - Get Real-Time Timeseries
 // Gets Time series information for a specific metric along with the number of concurrent viewers. This API is now deprecated, please use the `Get Monitoring Timeseries` API.
-func (s *realTime) GetRealtimeTimeseries(ctx context.Context, request operations.GetRealtimeTimeseriesRequest) (*operations.GetRealtimeTimeseriesResponse, error) {
+func (s *realTime) GetRealtimeTimeseries(ctx context.Context, request operations.GetRealtimeTimeseriesRequest, opts ...operations.Option) (*operations.GetRealtimeTimeseriesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries", request.PathParams)
 
@@ -187,7 +217,7 @@ func (s *realTime) GetRealtimeTimeseries(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -242,7 +272,17 @@ func (s *realTime) GetRealtimeTimeseries(ctx context.Context, request operations
 
 // ListRealtimeDimensions - List Real-Time Dimensions
 // Lists available real-time dimensions. This API is now deprecated, please use the `List Monitoring Dimensions` API.
-func (s *realTime) ListRealtimeDimensions(ctx context.Context, request operations.ListRealtimeDimensionsRequest) (*operations.ListRealtimeDimensionsResponse, error) {
+func (s *realTime) ListRealtimeDimensions(ctx context.Context, opts ...operations.Option) (*operations.ListRealtimeDimensionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/realtime/dimensions"
 
@@ -253,7 +293,7 @@ func (s *realTime) ListRealtimeDimensions(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -308,7 +348,17 @@ func (s *realTime) ListRealtimeDimensions(ctx context.Context, request operation
 
 // ListRealtimeMetrics - List Real-Time Metrics
 // Lists available real-time metrics. This API is now deprecated, please use the `List Monitoring Metrics` API.
-func (s *realTime) ListRealtimeMetrics(ctx context.Context, request operations.ListRealtimeMetricsRequest) (*operations.ListRealtimeMetricsResponse, error) {
+func (s *realTime) ListRealtimeMetrics(ctx context.Context, opts ...operations.Option) (*operations.ListRealtimeMetricsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/realtime/metrics"
 
@@ -319,7 +369,7 @@ func (s *realTime) ListRealtimeMetrics(ctx context.Context, request operations.L
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

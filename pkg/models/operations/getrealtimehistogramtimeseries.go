@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -17,7 +16,6 @@ type GetRealtimeHistogramTimeseriesQueryParams struct {
 type GetRealtimeHistogramTimeseriesRequest struct {
 	PathParams  GetRealtimeHistogramTimeseriesPathParams
 	QueryParams GetRealtimeHistogramTimeseriesQueryParams
-	Retries     *utils.RetryConfig
 }
 
 type GetRealtimeHistogramTimeseriesResponse struct {

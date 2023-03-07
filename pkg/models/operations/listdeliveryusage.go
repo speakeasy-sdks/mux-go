@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -16,7 +15,6 @@ type ListDeliveryUsageQueryParams struct {
 
 type ListDeliveryUsageRequest struct {
 	QueryParams ListDeliveryUsageQueryParams
-	Retries     *utils.RetryConfig
 }
 
 type ListDeliveryUsageResponse struct {

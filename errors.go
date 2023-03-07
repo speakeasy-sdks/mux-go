@@ -32,7 +32,17 @@ func newErrors(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // ListErrors - List Errors
 // Returns a list of errors.
-func (s *errors) ListErrors(ctx context.Context, request operations.ListErrorsRequest) (*operations.ListErrorsResponse, error) {
+func (s *errors) ListErrors(ctx context.Context, request operations.ListErrorsRequest, opts ...operations.Option) (*operations.ListErrorsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/errors"
 
@@ -47,7 +57,7 @@ func (s *errors) ListErrors(ctx context.Context, request operations.ListErrorsRe
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

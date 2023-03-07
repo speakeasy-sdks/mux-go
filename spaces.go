@@ -32,7 +32,17 @@ func newSpaces(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // CreateSpace - Create a space
 // Create a new space. Spaces are used to build [real-time video applications.](https://mux.com/real-time-video)
-func (s *spaces) CreateSpace(ctx context.Context, request operations.CreateSpaceRequest) (*operations.CreateSpaceResponse, error) {
+func (s *spaces) CreateSpace(ctx context.Context, request operations.CreateSpaceRequest, opts ...operations.Option) (*operations.CreateSpaceResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/spaces"
 
@@ -53,7 +63,7 @@ func (s *spaces) CreateSpace(ctx context.Context, request operations.CreateSpace
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -109,7 +119,17 @@ func (s *spaces) CreateSpace(ctx context.Context, request operations.CreateSpace
 // CreateSpaceBroadcast - Create a space broadcast
 // Creates a new broadcast. Broadcasts are used to create composited versions of your space, which can be broadcast to live streams.
 // **Note:** By default only a single broadcast destination can be specified. Contact Mux support if you need more.
-func (s *spaces) CreateSpaceBroadcast(ctx context.Context, request operations.CreateSpaceBroadcastRequest) (*operations.CreateSpaceBroadcastResponse, error) {
+func (s *spaces) CreateSpaceBroadcast(ctx context.Context, request operations.CreateSpaceBroadcastRequest, opts ...operations.Option) (*operations.CreateSpaceBroadcastResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts", request.PathParams)
 
@@ -130,7 +150,7 @@ func (s *spaces) CreateSpaceBroadcast(ctx context.Context, request operations.Cr
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -185,7 +205,17 @@ func (s *spaces) CreateSpaceBroadcast(ctx context.Context, request operations.Cr
 
 // DeleteSpace - Delete a space
 // Deletes a space. Spaces can only be deleted when `idle`.
-func (s *spaces) DeleteSpace(ctx context.Context, request operations.DeleteSpaceRequest) (*operations.DeleteSpaceResponse, error) {
+func (s *spaces) DeleteSpace(ctx context.Context, request operations.DeleteSpaceRequest, opts ...operations.Option) (*operations.DeleteSpaceResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}", request.PathParams)
 
@@ -196,7 +226,7 @@ func (s *spaces) DeleteSpace(ctx context.Context, request operations.DeleteSpace
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -242,7 +272,17 @@ func (s *spaces) DeleteSpace(ctx context.Context, request operations.DeleteSpace
 
 // DeleteSpaceBroadcast - Delete a space broadcast
 // Deletes a single broadcast of a specific space. Broadcasts can only be deleted when `idle`.
-func (s *spaces) DeleteSpaceBroadcast(ctx context.Context, request operations.DeleteSpaceBroadcastRequest) (*operations.DeleteSpaceBroadcastResponse, error) {
+func (s *spaces) DeleteSpaceBroadcast(ctx context.Context, request operations.DeleteSpaceBroadcastRequest, opts ...operations.Option) (*operations.DeleteSpaceBroadcastResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}", request.PathParams)
 
@@ -253,7 +293,7 @@ func (s *spaces) DeleteSpaceBroadcast(ctx context.Context, request operations.De
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -299,7 +339,17 @@ func (s *spaces) DeleteSpaceBroadcast(ctx context.Context, request operations.De
 
 // GetSpace - Retrieve a space
 // Retrieves the details of a space that has previously been created. Supply the unique space ID that was returned from your create space request, and Mux will return the information about the corresponding space. The same information is returned when creating a space.
-func (s *spaces) GetSpace(ctx context.Context, request operations.GetSpaceRequest) (*operations.GetSpaceResponse, error) {
+func (s *spaces) GetSpace(ctx context.Context, request operations.GetSpaceRequest, opts ...operations.Option) (*operations.GetSpaceResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}", request.PathParams)
 
@@ -310,7 +360,7 @@ func (s *spaces) GetSpace(ctx context.Context, request operations.GetSpaceReques
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -365,7 +415,17 @@ func (s *spaces) GetSpace(ctx context.Context, request operations.GetSpaceReques
 
 // GetSpaceBroadcast - Retrieve space broadcast
 // Retrieves the details of a broadcast of a specific space.
-func (s *spaces) GetSpaceBroadcast(ctx context.Context, request operations.GetSpaceBroadcastRequest) (*operations.GetSpaceBroadcastResponse, error) {
+func (s *spaces) GetSpaceBroadcast(ctx context.Context, request operations.GetSpaceBroadcastRequest, opts ...operations.Option) (*operations.GetSpaceBroadcastResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}", request.PathParams)
 
@@ -376,7 +436,7 @@ func (s *spaces) GetSpaceBroadcast(ctx context.Context, request operations.GetSp
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -431,7 +491,17 @@ func (s *spaces) GetSpaceBroadcast(ctx context.Context, request operations.GetSp
 
 // ListSpaces - List spaces
 // List all spaces in the current enviroment.
-func (s *spaces) ListSpaces(ctx context.Context, request operations.ListSpacesRequest) (*operations.ListSpacesResponse, error) {
+func (s *spaces) ListSpaces(ctx context.Context, request operations.ListSpacesRequest, opts ...operations.Option) (*operations.ListSpacesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/spaces"
 
@@ -446,7 +516,7 @@ func (s *spaces) ListSpaces(ctx context.Context, request operations.ListSpacesRe
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -501,7 +571,17 @@ func (s *spaces) ListSpaces(ctx context.Context, request operations.ListSpacesRe
 
 // StartSpaceBroadcast - Start a space broadcast
 // Starts broadcasting a space to the associated destination. Broadcasts can only be started when the space is `active` (when there are participants connected).
-func (s *spaces) StartSpaceBroadcast(ctx context.Context, request operations.StartSpaceBroadcastRequest) (*operations.StartSpaceBroadcastResponse, error) {
+func (s *spaces) StartSpaceBroadcast(ctx context.Context, request operations.StartSpaceBroadcastRequest, opts ...operations.Option) (*operations.StartSpaceBroadcastResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start", request.PathParams)
 
@@ -512,7 +592,7 @@ func (s *spaces) StartSpaceBroadcast(ctx context.Context, request operations.Sta
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -568,7 +648,17 @@ func (s *spaces) StartSpaceBroadcast(ctx context.Context, request operations.Sta
 // StopSpaceBroadcast - Stop a space broadcast
 // Stops broadcasting a space, causing the destination live stream to become idle. This API also automatically calls `complete` on the destination live stream.
 // Broadcasts are also automatically stopped when a space becomes idle.
-func (s *spaces) StopSpaceBroadcast(ctx context.Context, request operations.StopSpaceBroadcastRequest) (*operations.StopSpaceBroadcastResponse, error) {
+func (s *spaces) StopSpaceBroadcast(ctx context.Context, request operations.StopSpaceBroadcastRequest, opts ...operations.Option) (*operations.StopSpaceBroadcastResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop", request.PathParams)
 
@@ -579,7 +669,7 @@ func (s *spaces) StopSpaceBroadcast(ctx context.Context, request operations.Stop
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

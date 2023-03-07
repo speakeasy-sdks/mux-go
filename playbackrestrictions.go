@@ -32,7 +32,17 @@ func newPlaybackRestrictions(defaultClient, securityClient HTTPClient, serverURL
 
 // CreatePlaybackRestriction - Create a Playback Restriction
 // Create a new Playback Restriction.
-func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, request operations.CreatePlaybackRestrictionRequest) (*operations.CreatePlaybackRestrictionResponse, error) {
+func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, request operations.CreatePlaybackRestrictionRequest, opts ...operations.Option) (*operations.CreatePlaybackRestrictionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/playback-restrictions"
 
@@ -53,7 +63,7 @@ func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, re
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -108,7 +118,17 @@ func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, re
 
 // DeletePlaybackRestriction - Delete a Playback Restriction
 // Deletes a single Playback Restriction.
-func (s *playbackRestrictions) DeletePlaybackRestriction(ctx context.Context, request operations.DeletePlaybackRestrictionRequest) (*operations.DeletePlaybackRestrictionResponse, error) {
+func (s *playbackRestrictions) DeletePlaybackRestriction(ctx context.Context, request operations.DeletePlaybackRestrictionRequest, opts ...operations.Option) (*operations.DeletePlaybackRestrictionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}", request.PathParams)
 
@@ -119,7 +139,7 @@ func (s *playbackRestrictions) DeletePlaybackRestriction(ctx context.Context, re
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -165,7 +185,17 @@ func (s *playbackRestrictions) DeletePlaybackRestriction(ctx context.Context, re
 
 // GetPlaybackRestriction - Retrieve a Playback Restriction
 // Retrieves a Playback Restriction associated with the unique identifier.
-func (s *playbackRestrictions) GetPlaybackRestriction(ctx context.Context, request operations.GetPlaybackRestrictionRequest) (*operations.GetPlaybackRestrictionResponse, error) {
+func (s *playbackRestrictions) GetPlaybackRestriction(ctx context.Context, request operations.GetPlaybackRestrictionRequest, opts ...operations.Option) (*operations.GetPlaybackRestrictionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}", request.PathParams)
 
@@ -176,7 +206,7 @@ func (s *playbackRestrictions) GetPlaybackRestriction(ctx context.Context, reque
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -231,7 +261,17 @@ func (s *playbackRestrictions) GetPlaybackRestriction(ctx context.Context, reque
 
 // ListPlaybackRestrictions - List Playback Restrictions
 // Returns a list of all Playback Restrictions.
-func (s *playbackRestrictions) ListPlaybackRestrictions(ctx context.Context, request operations.ListPlaybackRestrictionsRequest) (*operations.ListPlaybackRestrictionsResponse, error) {
+func (s *playbackRestrictions) ListPlaybackRestrictions(ctx context.Context, request operations.ListPlaybackRestrictionsRequest, opts ...operations.Option) (*operations.ListPlaybackRestrictionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/playback-restrictions"
 
@@ -246,7 +286,7 @@ func (s *playbackRestrictions) ListPlaybackRestrictions(ctx context.Context, req
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -301,7 +341,17 @@ func (s *playbackRestrictions) ListPlaybackRestrictions(ctx context.Context, req
 
 // UpdateReferrerDomainRestriction - Update the Referrer Playback Restriction
 // Allows you to modify the list of domains or change how Mux validates playback requests without the `Referer` HTTP header. The Referrer restriction fully replaces the old list with this new list of domains.
-func (s *playbackRestrictions) UpdateReferrerDomainRestriction(ctx context.Context, request operations.UpdateReferrerDomainRestrictionRequest) (*operations.UpdateReferrerDomainRestrictionResponse, error) {
+func (s *playbackRestrictions) UpdateReferrerDomainRestriction(ctx context.Context, request operations.UpdateReferrerDomainRestrictionRequest, opts ...operations.Option) (*operations.UpdateReferrerDomainRestrictionResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer", request.PathParams)
 
@@ -322,7 +372,7 @@ func (s *playbackRestrictions) UpdateReferrerDomainRestriction(ctx context.Conte
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

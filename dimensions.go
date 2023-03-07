@@ -34,7 +34,17 @@ func newDimensions(defaultClient, securityClient HTTPClient, serverURL, language
 // Lists the values for a dimension along with a total count of related views.
 //
 // Note: This API replaces the list-filter-values API call.
-func (s *dimensions) ListDimensionValues(ctx context.Context, request operations.ListDimensionValuesRequest) (*operations.ListDimensionValuesResponse, error) {
+func (s *dimensions) ListDimensionValues(ctx context.Context, request operations.ListDimensionValuesRequest, opts ...operations.Option) (*operations.ListDimensionValuesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/dimensions/{DIMENSION_ID}", request.PathParams)
 
@@ -49,7 +59,7 @@ func (s *dimensions) ListDimensionValues(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -106,7 +116,17 @@ func (s *dimensions) ListDimensionValues(ctx context.Context, request operations
 // List all available dimensions.
 //
 // Note: This API replaces the list-filters API call.
-func (s *dimensions) ListDimensions(ctx context.Context, request operations.ListDimensionsRequest) (*operations.ListDimensionsResponse, error) {
+func (s *dimensions) ListDimensions(ctx context.Context, opts ...operations.Option) (*operations.ListDimensionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/dimensions"
 
@@ -117,7 +137,7 @@ func (s *dimensions) ListDimensions(ctx context.Context, request operations.List
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

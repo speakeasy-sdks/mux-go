@@ -31,7 +31,17 @@ func newPlaybackID(defaultClient, securityClient HTTPClient, serverURL, language
 
 // GetAssetOrLivestreamID - Retrieve an Asset or Live Stream ID
 // Retrieves the Identifier of the Asset or Live Stream associated with the Playback ID.
-func (s *playbackID) GetAssetOrLivestreamID(ctx context.Context, request operations.GetAssetOrLivestreamIDRequest) (*operations.GetAssetOrLivestreamIDResponse, error) {
+func (s *playbackID) GetAssetOrLivestreamID(ctx context.Context, request operations.GetAssetOrLivestreamIDRequest, opts ...operations.Option) (*operations.GetAssetOrLivestreamIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-ids/{PLAYBACK_ID}", request.PathParams)
 
@@ -42,7 +52,7 @@ func (s *playbackID) GetAssetOrLivestreamID(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
