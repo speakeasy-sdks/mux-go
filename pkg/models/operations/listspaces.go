@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -13,7 +12,6 @@ type ListSpacesQueryParams struct {
 
 type ListSpacesRequest struct {
 	QueryParams ListSpacesQueryParams
-	Retries     *utils.RetryConfig
 }
 
 type ListSpacesResponse struct {

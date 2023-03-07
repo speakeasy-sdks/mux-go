@@ -32,7 +32,17 @@ func newMonitoring(defaultClient, securityClient HTTPClient, serverURL, language
 
 // GetMonitoringBreakdown - Get Monitoring Breakdown
 // Gets breakdown information for a specific dimension and metric along with the number of concurrent viewers and negative impact score.
-func (s *monitoring) GetMonitoringBreakdown(ctx context.Context, request operations.GetMonitoringBreakdownRequest) (*operations.GetMonitoringBreakdownResponse, error) {
+func (s *monitoring) GetMonitoringBreakdown(ctx context.Context, request operations.GetMonitoringBreakdownRequest, opts ...operations.Option) (*operations.GetMonitoringBreakdownResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown", request.PathParams)
 
@@ -47,7 +57,7 @@ func (s *monitoring) GetMonitoringBreakdown(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -102,7 +112,17 @@ func (s *monitoring) GetMonitoringBreakdown(ctx context.Context, request operati
 
 // GetMonitoringHistogramTimeseries - Get Monitoring Histogram Timeseries
 // Gets histogram timeseries information for a specific metric.
-func (s *monitoring) GetMonitoringHistogramTimeseries(ctx context.Context, request operations.GetMonitoringHistogramTimeseriesRequest) (*operations.GetMonitoringHistogramTimeseriesResponse, error) {
+func (s *monitoring) GetMonitoringHistogramTimeseries(ctx context.Context, request operations.GetMonitoringHistogramTimeseriesRequest, opts ...operations.Option) (*operations.GetMonitoringHistogramTimeseriesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_HISTOGRAM_METRIC_ID}/histogram-timeseries", request.PathParams)
 
@@ -117,7 +137,7 @@ func (s *monitoring) GetMonitoringHistogramTimeseries(ctx context.Context, reque
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -172,7 +192,17 @@ func (s *monitoring) GetMonitoringHistogramTimeseries(ctx context.Context, reque
 
 // GetMonitoringTimeseries - Get Monitoring Timeseries
 // Gets Time series information for a specific metric along with the number of concurrent viewers.
-func (s *monitoring) GetMonitoringTimeseries(ctx context.Context, request operations.GetMonitoringTimeseriesRequest) (*operations.GetMonitoringTimeseriesResponse, error) {
+func (s *monitoring) GetMonitoringTimeseries(ctx context.Context, request operations.GetMonitoringTimeseriesRequest, opts ...operations.Option) (*operations.GetMonitoringTimeseriesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/timeseries", request.PathParams)
 
@@ -187,7 +217,7 @@ func (s *monitoring) GetMonitoringTimeseries(ctx context.Context, request operat
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -242,7 +272,17 @@ func (s *monitoring) GetMonitoringTimeseries(ctx context.Context, request operat
 
 // ListMonitoringDimensions - List Monitoring Dimensions
 // Lists available monitoring dimensions.
-func (s *monitoring) ListMonitoringDimensions(ctx context.Context, request operations.ListMonitoringDimensionsRequest) (*operations.ListMonitoringDimensionsResponse, error) {
+func (s *monitoring) ListMonitoringDimensions(ctx context.Context, opts ...operations.Option) (*operations.ListMonitoringDimensionsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/monitoring/dimensions"
 
@@ -253,7 +293,7 @@ func (s *monitoring) ListMonitoringDimensions(ctx context.Context, request opera
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -308,7 +348,17 @@ func (s *monitoring) ListMonitoringDimensions(ctx context.Context, request opera
 
 // ListMonitoringMetrics - List Monitoring Metrics
 // Lists available monitoring metrics.
-func (s *monitoring) ListMonitoringMetrics(ctx context.Context, request operations.ListMonitoringMetricsRequest) (*operations.ListMonitoringMetricsResponse, error) {
+func (s *monitoring) ListMonitoringMetrics(ctx context.Context, opts ...operations.Option) (*operations.ListMonitoringMetricsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/monitoring/metrics"
 
@@ -319,7 +369,7 @@ func (s *monitoring) ListMonitoringMetrics(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

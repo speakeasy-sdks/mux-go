@@ -40,10 +40,8 @@ import (
 func main() {
     s := mux.New(mux.WithSecurity(
         shared.Security{
-            AccessToken: shared.SchemeAccessToken{
-                Password: "YOUR_PASSWORD_HERE",
-                Username: "YOUR_USERNAME_HERE",
-            },
+            Password: "YOUR_PASSWORD_HERE",
+            Username: "YOUR_USERNAME_HERE",
         },
     ))
     

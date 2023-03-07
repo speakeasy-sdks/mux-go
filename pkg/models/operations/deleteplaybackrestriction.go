@@ -1,7 +1,6 @@
 package operations
 
 import (
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -11,7 +10,6 @@ type DeletePlaybackRestrictionPathParams struct {
 
 type DeletePlaybackRestrictionRequest struct {
 	PathParams DeletePlaybackRestrictionPathParams
-	Retries    *utils.RetryConfig
 }
 
 type DeletePlaybackRestrictionResponse struct {

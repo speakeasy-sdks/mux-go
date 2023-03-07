@@ -34,7 +34,17 @@ func newFilters(defaultClient, securityClient HTTPClient, serverURL, language, s
 // The API has been replaced by the list-dimension-values API call.
 //
 // Lists the values for a filter along with a total count of related views.
-func (s *filters) ListFilterValues(ctx context.Context, request operations.ListFilterValuesRequest) (*operations.ListFilterValuesResponse, error) {
+func (s *filters) ListFilterValues(ctx context.Context, request operations.ListFilterValuesRequest, opts ...operations.Option) (*operations.ListFilterValuesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/filters/{FILTER_ID}", request.PathParams)
 
@@ -49,7 +59,7 @@ func (s *filters) ListFilterValues(ctx context.Context, request operations.ListF
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -106,7 +116,17 @@ func (s *filters) ListFilterValues(ctx context.Context, request operations.ListF
 // The API has been replaced by the list-dimensions API call.
 //
 // Lists all the filters broken out into basic and advanced.
-func (s *filters) ListFilters(ctx context.Context, request operations.ListFiltersRequest) (*operations.ListFiltersResponse, error) {
+func (s *filters) ListFilters(ctx context.Context, opts ...operations.Option) (*operations.ListFiltersResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/filters"
 
@@ -117,7 +137,7 @@ func (s *filters) ListFilters(ctx context.Context, request operations.ListFilter
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

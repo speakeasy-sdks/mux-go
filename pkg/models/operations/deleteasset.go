@@ -1,7 +1,6 @@
 package operations
 
 import (
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -11,7 +10,6 @@ type DeleteAssetPathParams struct {
 
 type DeleteAssetRequest struct {
 	PathParams DeleteAssetPathParams
-	Retries    *utils.RetryConfig
 }
 
 type DeleteAssetResponse struct {

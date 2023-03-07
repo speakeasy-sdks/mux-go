@@ -1,7 +1,6 @@
 package operations
 
 import (
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -12,7 +11,6 @@ type DeleteSpaceBroadcastPathParams struct {
 
 type DeleteSpaceBroadcastRequest struct {
 	PathParams DeleteSpaceBroadcastPathParams
-	Retries    *utils.RetryConfig
 }
 
 type DeleteSpaceBroadcastResponse struct {

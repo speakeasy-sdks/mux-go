@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -20,7 +19,6 @@ type ListDimensionValuesQueryParams struct {
 type ListDimensionValuesRequest struct {
 	PathParams  ListDimensionValuesPathParams
 	QueryParams ListDimensionValuesQueryParams
-	Retries     *utils.RetryConfig
 }
 
 type ListDimensionValuesResponse struct {

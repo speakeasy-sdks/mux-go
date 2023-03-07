@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -13,7 +12,6 @@ type ListURLSigningKeysQueryParams struct {
 
 type ListURLSigningKeysRequest struct {
 	QueryParams ListURLSigningKeysQueryParams
-	Retries     *utils.RetryConfig
 }
 
 type ListURLSigningKeysResponse struct {

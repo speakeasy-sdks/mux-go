@@ -32,7 +32,17 @@ func newAssets(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // CreateAsset - Create an asset
 // Create a new Mux Video asset.
-func (s *assets) CreateAsset(ctx context.Context, request operations.CreateAssetRequest) (*operations.CreateAssetResponse, error) {
+func (s *assets) CreateAsset(ctx context.Context, request operations.CreateAssetRequest, opts ...operations.Option) (*operations.CreateAssetResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/assets"
 
@@ -53,7 +63,7 @@ func (s *assets) CreateAsset(ctx context.Context, request operations.CreateAsset
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -108,7 +118,17 @@ func (s *assets) CreateAsset(ctx context.Context, request operations.CreateAsset
 
 // CreateAssetPlaybackID - Create a playback ID
 // Creates a playback ID that can be used to stream the asset to a viewer.
-func (s *assets) CreateAssetPlaybackID(ctx context.Context, request operations.CreateAssetPlaybackIDRequest) (*operations.CreateAssetPlaybackIDResponse, error) {
+func (s *assets) CreateAssetPlaybackID(ctx context.Context, request operations.CreateAssetPlaybackIDRequest, opts ...operations.Option) (*operations.CreateAssetPlaybackIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids", request.PathParams)
 
@@ -129,7 +149,7 @@ func (s *assets) CreateAssetPlaybackID(ctx context.Context, request operations.C
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -184,7 +204,17 @@ func (s *assets) CreateAssetPlaybackID(ctx context.Context, request operations.C
 
 // CreateAssetTrack - Create an asset track
 // Adds an asset track (for example, subtitles) to an asset.
-func (s *assets) CreateAssetTrack(ctx context.Context, request operations.CreateAssetTrackRequest) (*operations.CreateAssetTrackResponse, error) {
+func (s *assets) CreateAssetTrack(ctx context.Context, request operations.CreateAssetTrackRequest, opts ...operations.Option) (*operations.CreateAssetTrackResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/tracks", request.PathParams)
 
@@ -205,7 +235,7 @@ func (s *assets) CreateAssetTrack(ctx context.Context, request operations.Create
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -260,7 +290,17 @@ func (s *assets) CreateAssetTrack(ctx context.Context, request operations.Create
 
 // DeleteAsset - Delete an asset
 // Deletes a video asset and all its data.
-func (s *assets) DeleteAsset(ctx context.Context, request operations.DeleteAssetRequest) (*operations.DeleteAssetResponse, error) {
+func (s *assets) DeleteAsset(ctx context.Context, request operations.DeleteAssetRequest, opts ...operations.Option) (*operations.DeleteAssetResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request.PathParams)
 
@@ -271,7 +311,7 @@ func (s *assets) DeleteAsset(ctx context.Context, request operations.DeleteAsset
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -317,7 +357,17 @@ func (s *assets) DeleteAsset(ctx context.Context, request operations.DeleteAsset
 
 // DeleteAssetPlaybackID - Delete a playback ID
 // Deletes a playback ID, rendering it nonfunctional for viewing an asset's video content. Please note that deleting the playback ID removes access to the underlying asset; a viewer who started playback before the playback ID was deleted may be able to watch the entire video for a limited duration.
-func (s *assets) DeleteAssetPlaybackID(ctx context.Context, request operations.DeleteAssetPlaybackIDRequest) (*operations.DeleteAssetPlaybackIDResponse, error) {
+func (s *assets) DeleteAssetPlaybackID(ctx context.Context, request operations.DeleteAssetPlaybackIDRequest, opts ...operations.Option) (*operations.DeleteAssetPlaybackIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
 
@@ -328,7 +378,7 @@ func (s *assets) DeleteAssetPlaybackID(ctx context.Context, request operations.D
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -374,7 +424,17 @@ func (s *assets) DeleteAssetPlaybackID(ctx context.Context, request operations.D
 
 // DeleteAssetTrack - Delete an asset track
 // Removes a text track from an asset. Audio and video tracks on assets cannot be removed.
-func (s *assets) DeleteAssetTrack(ctx context.Context, request operations.DeleteAssetTrackRequest) (*operations.DeleteAssetTrackResponse, error) {
+func (s *assets) DeleteAssetTrack(ctx context.Context, request operations.DeleteAssetTrackRequest, opts ...operations.Option) (*operations.DeleteAssetTrackResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}", request.PathParams)
 
@@ -385,7 +445,7 @@ func (s *assets) DeleteAssetTrack(ctx context.Context, request operations.Delete
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -431,7 +491,17 @@ func (s *assets) DeleteAssetTrack(ctx context.Context, request operations.Delete
 
 // GetAsset - Retrieve an asset
 // Retrieves the details of an asset that has previously been created. Supply the unique asset ID that was returned from your previous request, and Mux will return the corresponding asset information. The same information is returned when creating an asset.
-func (s *assets) GetAsset(ctx context.Context, request operations.GetAssetRequest) (*operations.GetAssetResponse, error) {
+func (s *assets) GetAsset(ctx context.Context, request operations.GetAssetRequest, opts ...operations.Option) (*operations.GetAssetResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request.PathParams)
 
@@ -442,7 +512,7 @@ func (s *assets) GetAsset(ctx context.Context, request operations.GetAssetReques
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -497,7 +567,17 @@ func (s *assets) GetAsset(ctx context.Context, request operations.GetAssetReques
 
 // GetAssetInputInfo - Retrieve asset input info
 // Returns a list of the input objects that were used to create the asset along with any settings that were applied to each input.
-func (s *assets) GetAssetInputInfo(ctx context.Context, request operations.GetAssetInputInfoRequest) (*operations.GetAssetInputInfoResponse, error) {
+func (s *assets) GetAssetInputInfo(ctx context.Context, request operations.GetAssetInputInfoRequest, opts ...operations.Option) (*operations.GetAssetInputInfoResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/input-info", request.PathParams)
 
@@ -508,7 +588,7 @@ func (s *assets) GetAssetInputInfo(ctx context.Context, request operations.GetAs
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -563,7 +643,17 @@ func (s *assets) GetAssetInputInfo(ctx context.Context, request operations.GetAs
 
 // GetAssetPlaybackID - Retrieve a playback ID
 // Retrieves information about the specified playback ID.
-func (s *assets) GetAssetPlaybackID(ctx context.Context, request operations.GetAssetPlaybackIDRequest) (*operations.GetAssetPlaybackIDResponse, error) {
+func (s *assets) GetAssetPlaybackID(ctx context.Context, request operations.GetAssetPlaybackIDRequest, opts ...operations.Option) (*operations.GetAssetPlaybackIDResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
 
@@ -574,7 +664,7 @@ func (s *assets) GetAssetPlaybackID(ctx context.Context, request operations.GetA
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -629,7 +719,17 @@ func (s *assets) GetAssetPlaybackID(ctx context.Context, request operations.GetA
 
 // ListAssets - List assets
 // List all Mux assets.
-func (s *assets) ListAssets(ctx context.Context, request operations.ListAssetsRequest) (*operations.ListAssetsResponse, error) {
+func (s *assets) ListAssets(ctx context.Context, request operations.ListAssetsRequest, opts ...operations.Option) (*operations.ListAssetsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/assets"
 
@@ -644,7 +744,7 @@ func (s *assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -699,7 +799,17 @@ func (s *assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 
 // UpdateAsset - Update an Asset
 // Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.
-func (s *assets) UpdateAsset(ctx context.Context, request operations.UpdateAssetRequest) (*operations.UpdateAssetResponse, error) {
+func (s *assets) UpdateAsset(ctx context.Context, request operations.UpdateAssetRequest, opts ...operations.Option) (*operations.UpdateAssetResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request.PathParams)
 
@@ -720,7 +830,7 @@ func (s *assets) UpdateAsset(ctx context.Context, request operations.UpdateAsset
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -776,7 +886,17 @@ func (s *assets) UpdateAsset(ctx context.Context, request operations.UpdateAsset
 // UpdateAssetMasterAccess - Update master access
 // Allows you to add temporary access to the master (highest-quality) version of the asset in MP4 format. A URL will be created that can be used to download the master version for 24 hours. After 24 hours Master Access will revert to "none".
 // This master version is not optimized for web and not meant to be streamed, only downloaded for purposes like archiving or editing the video offline.
-func (s *assets) UpdateAssetMasterAccess(ctx context.Context, request operations.UpdateAssetMasterAccessRequest) (*operations.UpdateAssetMasterAccessResponse, error) {
+func (s *assets) UpdateAssetMasterAccess(ctx context.Context, request operations.UpdateAssetMasterAccessRequest, opts ...operations.Option) (*operations.UpdateAssetMasterAccessResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/master-access", request.PathParams)
 
@@ -797,7 +917,7 @@ func (s *assets) UpdateAssetMasterAccess(ctx context.Context, request operations
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -852,7 +972,17 @@ func (s *assets) UpdateAssetMasterAccess(ctx context.Context, request operations
 
 // UpdateAssetMp4Support - Update MP4 support
 // Allows you to add or remove mp4 support for assets that were created without it. Currently there are two values supported in this request, `standard` and `none`. `none` means that an asset *does not* have mp4 support, so submitting a request with `mp4_support` set to `none` will delete the mp4 assets from the asset in question.
-func (s *assets) UpdateAssetMp4Support(ctx context.Context, request operations.UpdateAssetMp4SupportRequest) (*operations.UpdateAssetMp4SupportResponse, error) {
+func (s *assets) UpdateAssetMp4Support(ctx context.Context, request operations.UpdateAssetMp4SupportRequest, opts ...operations.Option) (*operations.UpdateAssetMp4SupportResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/mp4-support", request.PathParams)
 
@@ -873,7 +1003,7 @@ func (s *assets) UpdateAssetMp4Support(ctx context.Context, request operations.U
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

@@ -1,7 +1,6 @@
 package operations
 
 import (
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -12,7 +11,6 @@ type DeleteLiveStreamSimulcastTargetPathParams struct {
 
 type DeleteLiveStreamSimulcastTargetRequest struct {
 	PathParams DeleteLiveStreamSimulcastTargetPathParams
-	Retries    *utils.RetryConfig
 }
 
 type DeleteLiveStreamSimulcastTargetResponse struct {

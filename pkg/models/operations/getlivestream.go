@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -12,7 +11,6 @@ type GetLiveStreamPathParams struct {
 
 type GetLiveStreamRequest struct {
 	PathParams GetLiveStreamPathParams
-	Retries    *utils.RetryConfig
 }
 
 type GetLiveStreamResponse struct {

@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -12,7 +11,6 @@ type GetAssetPathParams struct {
 
 type GetAssetRequest struct {
 	PathParams GetAssetPathParams
-	Retries    *utils.RetryConfig
 }
 
 type GetAssetResponse struct {

@@ -32,7 +32,17 @@ func newURLSigningKeys(defaultClient, securityClient HTTPClient, serverURL, lang
 
 // CreateURLSigningKey - Create a URL signing key
 // Creates a new signing key pair. When creating a new signing key, the API will generate a 2048-bit RSA key-pair and return the private key and a generated key-id; the public key will be stored at Mux to validate signed tokens.
-func (s *urlSigningKeys) CreateURLSigningKey(ctx context.Context, request operations.CreateURLSigningKeyRequest) (*operations.CreateURLSigningKeyResponse, error) {
+func (s *urlSigningKeys) CreateURLSigningKey(ctx context.Context, opts ...operations.Option) (*operations.CreateURLSigningKeyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/signing-keys"
 
@@ -43,7 +53,7 @@ func (s *urlSigningKeys) CreateURLSigningKey(ctx context.Context, request operat
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -98,7 +108,17 @@ func (s *urlSigningKeys) CreateURLSigningKey(ctx context.Context, request operat
 
 // DeleteURLSigningKey - Delete a URL signing key
 // Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no URLs can be signed using the key again.
-func (s *urlSigningKeys) DeleteURLSigningKey(ctx context.Context, request operations.DeleteURLSigningKeyRequest) (*operations.DeleteURLSigningKeyResponse, error) {
+func (s *urlSigningKeys) DeleteURLSigningKey(ctx context.Context, request operations.DeleteURLSigningKeyRequest, opts ...operations.Option) (*operations.DeleteURLSigningKeyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/signing-keys/{SIGNING_KEY_ID}", request.PathParams)
 
@@ -109,7 +129,7 @@ func (s *urlSigningKeys) DeleteURLSigningKey(ctx context.Context, request operat
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -158,7 +178,17 @@ func (s *urlSigningKeys) DeleteURLSigningKey(ctx context.Context, request operat
 // been created. Supply the unique signing key ID that was returned from your
 // previous request, and Mux will return the corresponding signing key information.
 // **The private key is not returned in this response.**
-func (s *urlSigningKeys) GetURLSigningKey(ctx context.Context, request operations.GetURLSigningKeyRequest) (*operations.GetURLSigningKeyResponse, error) {
+func (s *urlSigningKeys) GetURLSigningKey(ctx context.Context, request operations.GetURLSigningKeyRequest, opts ...operations.Option) (*operations.GetURLSigningKeyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/signing-keys/{SIGNING_KEY_ID}", request.PathParams)
 
@@ -169,7 +199,7 @@ func (s *urlSigningKeys) GetURLSigningKey(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -224,7 +254,17 @@ func (s *urlSigningKeys) GetURLSigningKey(ctx context.Context, request operation
 
 // ListURLSigningKeys - List URL signing keys
 // Returns a list of URL signing keys.
-func (s *urlSigningKeys) ListURLSigningKeys(ctx context.Context, request operations.ListURLSigningKeysRequest) (*operations.ListURLSigningKeysResponse, error) {
+func (s *urlSigningKeys) ListURLSigningKeys(ctx context.Context, request operations.ListURLSigningKeysRequest, opts ...operations.Option) (*operations.ListURLSigningKeysResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/signing-keys"
 
@@ -239,7 +279,7 @@ func (s *urlSigningKeys) ListURLSigningKeys(ctx context.Context, request operati
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

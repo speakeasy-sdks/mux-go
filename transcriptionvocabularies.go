@@ -32,7 +32,17 @@ func newTranscriptionVocabularies(defaultClient, securityClient HTTPClient, serv
 
 // CreateTranscriptionVocabulary - Create a Transcription Vocabulary
 // Create a new Transcription Vocabulary.
-func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Context, request operations.CreateTranscriptionVocabularyRequest) (*operations.CreateTranscriptionVocabularyResponse, error) {
+func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Context, request operations.CreateTranscriptionVocabularyRequest, opts ...operations.Option) (*operations.CreateTranscriptionVocabularyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/transcription-vocabularies"
 
@@ -53,7 +63,7 @@ func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Co
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -108,7 +118,17 @@ func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Co
 
 // DeleteTranscriptionVocabulary - Delete a Transcription Vocabulary
 // Deletes a Transcription Vocabulary. The Transcription Vocabulary's ID will be disassociated from any live streams using it. Transcription Vocabularies can be deleted while associated live streams are active. However, the words and phrases in the deleted Transcription Vocabulary will remain attached to those streams while they are active.
-func (s *transcriptionVocabularies) DeleteTranscriptionVocabulary(ctx context.Context, request operations.DeleteTranscriptionVocabularyRequest) (*operations.DeleteTranscriptionVocabularyResponse, error) {
+func (s *transcriptionVocabularies) DeleteTranscriptionVocabulary(ctx context.Context, request operations.DeleteTranscriptionVocabularyRequest, opts ...operations.Option) (*operations.DeleteTranscriptionVocabularyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request.PathParams)
 
@@ -119,7 +139,7 @@ func (s *transcriptionVocabularies) DeleteTranscriptionVocabulary(ctx context.Co
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -165,7 +185,17 @@ func (s *transcriptionVocabularies) DeleteTranscriptionVocabulary(ctx context.Co
 
 // GetTranscriptionVocabulary - Retrieve a Transcription Vocabulary
 // Retrieves the details of a Transcription Vocabulary that has previously been created. Supply the unique Transcription Vocabulary ID and Mux will return the corresponding Transcription Vocabulary information. The same information is returned when creating a Transcription Vocabulary.
-func (s *transcriptionVocabularies) GetTranscriptionVocabulary(ctx context.Context, request operations.GetTranscriptionVocabularyRequest) (*operations.GetTranscriptionVocabularyResponse, error) {
+func (s *transcriptionVocabularies) GetTranscriptionVocabulary(ctx context.Context, request operations.GetTranscriptionVocabularyRequest, opts ...operations.Option) (*operations.GetTranscriptionVocabularyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request.PathParams)
 
@@ -176,7 +206,7 @@ func (s *transcriptionVocabularies) GetTranscriptionVocabulary(ctx context.Conte
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -231,7 +261,17 @@ func (s *transcriptionVocabularies) GetTranscriptionVocabulary(ctx context.Conte
 
 // ListTranscriptionVocabularies - List Transcription Vocabularies
 // List all Transcription Vocabularies.
-func (s *transcriptionVocabularies) ListTranscriptionVocabularies(ctx context.Context, request operations.ListTranscriptionVocabulariesRequest) (*operations.ListTranscriptionVocabulariesResponse, error) {
+func (s *transcriptionVocabularies) ListTranscriptionVocabularies(ctx context.Context, request operations.ListTranscriptionVocabulariesRequest, opts ...operations.Option) (*operations.ListTranscriptionVocabulariesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/transcription-vocabularies"
 
@@ -246,7 +286,7 @@ func (s *transcriptionVocabularies) ListTranscriptionVocabularies(ctx context.Co
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -301,7 +341,17 @@ func (s *transcriptionVocabularies) ListTranscriptionVocabularies(ctx context.Co
 
 // UpdateTranscriptionVocabulary - Update a Transcription Vocabulary
 // Updates the details of a previously-created Transcription Vocabulary. Updates to Transcription Vocabularies are allowed while associated live streams are active. However, updates will not be applied to those streams while they are active.
-func (s *transcriptionVocabularies) UpdateTranscriptionVocabulary(ctx context.Context, request operations.UpdateTranscriptionVocabularyRequest) (*operations.UpdateTranscriptionVocabularyResponse, error) {
+func (s *transcriptionVocabularies) UpdateTranscriptionVocabulary(ctx context.Context, request operations.UpdateTranscriptionVocabularyRequest, opts ...operations.Option) (*operations.UpdateTranscriptionVocabularyResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request.PathParams)
 
@@ -322,7 +372,7 @@ func (s *transcriptionVocabularies) UpdateTranscriptionVocabulary(ctx context.Co
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

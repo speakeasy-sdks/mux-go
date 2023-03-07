@@ -34,7 +34,17 @@ func newDirectUploads(defaultClient, securityClient HTTPClient, serverURL, langu
 // Cancels a direct upload and marks it as cancelled. If a pending upload finishes after this
 // request, no asset will be created. This request will only succeed if the upload is still in
 // the `waiting` state.
-func (s *directUploads) CancelDirectUpload(ctx context.Context, request operations.CancelDirectUploadRequest) (*operations.CancelDirectUploadResponse, error) {
+func (s *directUploads) CancelDirectUpload(ctx context.Context, request operations.CancelDirectUploadRequest, opts ...operations.Option) (*operations.CancelDirectUploadResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/uploads/{UPLOAD_ID}/cancel", request.PathParams)
 
@@ -45,7 +55,7 @@ func (s *directUploads) CancelDirectUpload(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -101,7 +111,17 @@ func (s *directUploads) CancelDirectUpload(ctx context.Context, request operatio
 
 // CreateDirectUpload - Create a new direct upload URL
 // Creates a new direct upload, through which video content can be uploaded for ingest to Mux.
-func (s *directUploads) CreateDirectUpload(ctx context.Context, request operations.CreateDirectUploadRequest) (*operations.CreateDirectUploadResponse, error) {
+func (s *directUploads) CreateDirectUpload(ctx context.Context, request operations.CreateDirectUploadRequest, opts ...operations.Option) (*operations.CreateDirectUploadResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/uploads"
 
@@ -122,7 +142,7 @@ func (s *directUploads) CreateDirectUpload(ctx context.Context, request operatio
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -177,7 +197,17 @@ func (s *directUploads) CreateDirectUpload(ctx context.Context, request operatio
 
 // GetDirectUpload - Retrieve a single direct upload's info
 // Fetches information about a single direct upload in the current environment.
-func (s *directUploads) GetDirectUpload(ctx context.Context, request operations.GetDirectUploadRequest) (*operations.GetDirectUploadResponse, error) {
+func (s *directUploads) GetDirectUpload(ctx context.Context, request operations.GetDirectUploadRequest, opts ...operations.Option) (*operations.GetDirectUploadResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/video/v1/uploads/{UPLOAD_ID}", request.PathParams)
 
@@ -188,7 +218,7 @@ func (s *directUploads) GetDirectUpload(ctx context.Context, request operations.
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -243,7 +273,17 @@ func (s *directUploads) GetDirectUpload(ctx context.Context, request operations.
 
 // ListDirectUploads - List direct uploads
 // Lists currently extant direct uploads in the current environment.
-func (s *directUploads) ListDirectUploads(ctx context.Context, request operations.ListDirectUploadsRequest) (*operations.ListDirectUploadsResponse, error) {
+func (s *directUploads) ListDirectUploads(ctx context.Context, request operations.ListDirectUploadsRequest, opts ...operations.Option) (*operations.ListDirectUploadsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/uploads"
 
@@ -258,7 +298,7 @@ func (s *directUploads) ListDirectUploads(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

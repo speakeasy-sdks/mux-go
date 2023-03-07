@@ -37,7 +37,17 @@ func newMetrics(defaultClient, securityClient HTTPClient, serverURL, language, s
 //   - the first element is the interval time
 //   - the second element is the calculated metric value
 //   - the third element is the number of views in the interval that have a valid metric value
-func (s *metrics) GetMetricTimeseriesData(ctx context.Context, request operations.GetMetricTimeseriesDataRequest) (*operations.GetMetricTimeseriesDataResponse, error) {
+func (s *metrics) GetMetricTimeseriesData(ctx context.Context, request operations.GetMetricTimeseriesDataRequest, opts ...operations.Option) (*operations.GetMetricTimeseriesDataResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/timeseries", request.PathParams)
 
@@ -52,7 +62,7 @@ func (s *metrics) GetMetricTimeseriesData(ctx context.Context, request operation
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -107,7 +117,17 @@ func (s *metrics) GetMetricTimeseriesData(ctx context.Context, request operation
 
 // GetOverallValues - Get Overall values
 // Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric.
-func (s *metrics) GetOverallValues(ctx context.Context, request operations.GetOverallValuesRequest) (*operations.GetOverallValuesResponse, error) {
+func (s *metrics) GetOverallValues(ctx context.Context, request operations.GetOverallValuesRequest, opts ...operations.Option) (*operations.GetOverallValuesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/overall", request.PathParams)
 
@@ -122,7 +142,7 @@ func (s *metrics) GetOverallValues(ctx context.Context, request operations.GetOv
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -177,7 +197,17 @@ func (s *metrics) GetOverallValues(ctx context.Context, request operations.GetOv
 
 // ListAllMetricValues - List all metric values
 // List all of the values across every breakdown for a specific metric.
-func (s *metrics) ListAllMetricValues(ctx context.Context, request operations.ListAllMetricValuesRequest) (*operations.ListAllMetricValuesResponse, error) {
+func (s *metrics) ListAllMetricValues(ctx context.Context, request operations.ListAllMetricValuesRequest, opts ...operations.Option) (*operations.ListAllMetricValuesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/data/v1/metrics/comparison"
 
@@ -192,7 +222,7 @@ func (s *metrics) ListAllMetricValues(ctx context.Context, request operations.Li
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -247,7 +277,17 @@ func (s *metrics) ListAllMetricValues(ctx context.Context, request operations.Li
 
 // ListBreakdownValues - List breakdown values
 // List the breakdown values for a specific metric.
-func (s *metrics) ListBreakdownValues(ctx context.Context, request operations.ListBreakdownValuesRequest) (*operations.ListBreakdownValuesResponse, error) {
+func (s *metrics) ListBreakdownValues(ctx context.Context, request operations.ListBreakdownValuesRequest, opts ...operations.Option) (*operations.ListBreakdownValuesResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/breakdown", request.PathParams)
 
@@ -262,7 +302,7 @@ func (s *metrics) ListBreakdownValues(ctx context.Context, request operations.Li
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",
@@ -317,7 +357,17 @@ func (s *metrics) ListBreakdownValues(ctx context.Context, request operations.Li
 
 // ListInsights - List Insights
 // Returns a list of insights for a metric. These are the worst performing values across all breakdowns sorted by how much they negatively impact a specific metric.
-func (s *metrics) ListInsights(ctx context.Context, request operations.ListInsightsRequest) (*operations.ListInsightsResponse, error) {
+func (s *metrics) ListInsights(ctx context.Context, request operations.ListInsightsRequest, opts ...operations.Option) (*operations.ListInsightsResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/insights", request.PathParams)
 
@@ -332,7 +382,7 @@ func (s *metrics) ListInsights(ctx context.Context, request operations.ListInsig
 
 	client := s.securityClient
 
-	retryConfig := request.Retries
+	retryConfig := o.Retries
 	if retryConfig == nil {
 		retryConfig = &utils.RetryConfig{
 			Strategy: "backoff",

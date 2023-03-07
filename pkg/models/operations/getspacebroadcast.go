@@ -2,7 +2,6 @@ package operations
 
 import (
 	"github.com/speakeasy-sdks/mux-go/pkg/models/shared"
-	"github.com/speakeasy-sdks/mux-go/pkg/utils"
 	"net/http"
 )
 
@@ -13,7 +12,6 @@ type GetSpaceBroadcastPathParams struct {
 
 type GetSpaceBroadcastRequest struct {
 	PathParams GetSpaceBroadcastPathParams
-	Retries    *utils.RetryConfig
 }
 
 type GetSpaceBroadcastResponse struct {
