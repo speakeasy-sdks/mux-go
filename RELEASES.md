@@ -111,3 +111,11 @@ Based on:
 - Speakeasy CLI 1.8.7 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v1.6.4] https://github.com/speakeasy-sdks/mux-go/releases/tag/v1.6.4 - .
+
+## 2023-03-10 01:51:12
+### Changes
+Based on:
+- OpenAPI Doc v1 ./mux.yaml
+- Speakeasy CLI 1.9.1 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v1.7.0] https://github.com/speakeasy-sdks/mux-go/releases/tag/v1.7.0 - .
