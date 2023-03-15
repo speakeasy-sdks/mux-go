@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type ListDirectUploadsQueryParams struct {
+type ListDirectUploadsRequest struct {
 	Limit *int `queryParam:"style=form,explode=true,name=limit"`
 	Page  *int `queryParam:"style=form,explode=true,name=page"`
-}
-
-type ListDirectUploadsRequest struct {
-	QueryParams ListDirectUploadsQueryParams
 }
 
 type ListDirectUploadsResponse struct {

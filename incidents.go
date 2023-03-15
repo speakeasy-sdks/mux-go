@@ -44,7 +44,7 @@ func (s *incidents) GetIncident(ctx context.Context, request operations.GetIncid
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/incidents/{INCIDENT_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/incidents/{INCIDENT_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -127,7 +127,7 @@ func (s *incidents) ListIncidents(ctx context.Context, request operations.ListIn
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -200,14 +200,14 @@ func (s *incidents) ListRelatedIncidents(ctx context.Context, request operations
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/incidents/{INCIDENT_ID}/related", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/incidents/{INCIDENT_ID}/related", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

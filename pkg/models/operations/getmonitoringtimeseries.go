@@ -5,17 +5,9 @@ import (
 	"net/http"
 )
 
-type GetMonitoringTimeseriesPathParams struct {
-	MonitoringMetricID shared.MonitoringMetricIDEnum `pathParam:"style=simple,explode=false,name=MONITORING_METRIC_ID"`
-}
-
-type GetMonitoringTimeseriesQueryParams struct {
-	Filters []string `queryParam:"style=form,explode=true,name=filters[]"`
-}
-
 type GetMonitoringTimeseriesRequest struct {
-	PathParams  GetMonitoringTimeseriesPathParams
-	QueryParams GetMonitoringTimeseriesQueryParams
+	MonitoringMetricID shared.MonitoringMetricIDEnum `pathParam:"style=simple,explode=false,name=MONITORING_METRIC_ID"`
+	Filters            []string                      `queryParam:"style=form,explode=true,name=filters[]"`
 }
 
 type GetMonitoringTimeseriesResponse struct {

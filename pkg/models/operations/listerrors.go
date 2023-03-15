@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type ListErrorsQueryParams struct {
+type ListErrorsRequest struct {
 	Filters   []string `queryParam:"style=form,explode=true,name=filters[]"`
 	Timeframe []string `queryParam:"style=form,explode=true,name=timeframe[]"`
-}
-
-type ListErrorsRequest struct {
-	QueryParams ListErrorsQueryParams
 }
 
 type ListErrorsResponse struct {

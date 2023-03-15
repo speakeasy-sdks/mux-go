@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetPlaybackRestrictionPathParams struct {
-	PlaybackRestrictionID string `pathParam:"style=simple,explode=false,name=PLAYBACK_RESTRICTION_ID"`
-}
-
 type GetPlaybackRestrictionRequest struct {
-	PathParams GetPlaybackRestrictionPathParams
+	PlaybackRestrictionID string `pathParam:"style=simple,explode=false,name=PLAYBACK_RESTRICTION_ID"`
 }
 
 type GetPlaybackRestrictionResponse struct {

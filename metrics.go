@@ -49,14 +49,14 @@ func (s *metrics) GetMetricTimeseriesData(ctx context.Context, request operation
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/timeseries", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/timeseries", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -129,14 +129,14 @@ func (s *metrics) GetOverallValues(ctx context.Context, request operations.GetOv
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/overall", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/overall", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -216,7 +216,7 @@ func (s *metrics) ListAllMetricValues(ctx context.Context, request operations.Li
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -289,14 +289,14 @@ func (s *metrics) ListBreakdownValues(ctx context.Context, request operations.Li
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/breakdown", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/breakdown", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -369,14 +369,14 @@ func (s *metrics) ListInsights(ctx context.Context, request operations.ListInsig
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/insights", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/metrics/{METRIC_ID}/insights", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

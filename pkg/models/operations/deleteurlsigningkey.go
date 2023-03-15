@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type DeleteURLSigningKeyPathParams struct {
-	SigningKeyID string `pathParam:"style=simple,explode=false,name=SIGNING_KEY_ID"`
-}
-
 type DeleteURLSigningKeyRequest struct {
-	PathParams DeleteURLSigningKeyPathParams
+	SigningKeyID string `pathParam:"style=simple,explode=false,name=SIGNING_KEY_ID"`
 }
 
 type DeleteURLSigningKeyResponse struct {

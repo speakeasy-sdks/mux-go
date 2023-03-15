@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type DeleteAssetPathParams struct {
-	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
-}
-
 type DeleteAssetRequest struct {
-	PathParams DeleteAssetPathParams
+	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
 }
 
 type DeleteAssetResponse struct {

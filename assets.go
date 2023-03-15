@@ -32,7 +32,7 @@ func newAssets(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // CreateAsset - Create an asset
 // Create a new Mux Video asset.
-func (s *assets) CreateAsset(ctx context.Context, request operations.CreateAssetRequest, opts ...operations.Option) (*operations.CreateAssetResponse, error) {
+func (s *assets) CreateAsset(ctx context.Context, request shared.CreateAssetRequest, opts ...operations.Option) (*operations.CreateAssetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -46,7 +46,7 @@ func (s *assets) CreateAsset(ctx context.Context, request operations.CreateAsset
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/assets"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -130,9 +130,9 @@ func (s *assets) CreateAssetPlaybackID(ctx context.Context, request operations.C
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreatePlaybackIDRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -216,9 +216,9 @@ func (s *assets) CreateAssetTrack(ctx context.Context, request operations.Create
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/tracks", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/tracks", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreateTrackRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -302,7 +302,7 @@ func (s *assets) DeleteAsset(ctx context.Context, request operations.DeleteAsset
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -369,7 +369,7 @@ func (s *assets) DeleteAssetPlaybackID(ctx context.Context, request operations.D
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -436,7 +436,7 @@ func (s *assets) DeleteAssetTrack(ctx context.Context, request operations.Delete
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -503,7 +503,7 @@ func (s *assets) GetAsset(ctx context.Context, request operations.GetAssetReques
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -579,7 +579,7 @@ func (s *assets) GetAssetInputInfo(ctx context.Context, request operations.GetAs
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/input-info", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/input-info", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -655,7 +655,7 @@ func (s *assets) GetAssetPlaybackID(ctx context.Context, request operations.GetA
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -738,7 +738,7 @@ func (s *assets) ListAssets(ctx context.Context, request operations.ListAssetsRe
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -811,9 +811,9 @@ func (s *assets) UpdateAsset(ctx context.Context, request operations.UpdateAsset
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateAssetRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -898,9 +898,9 @@ func (s *assets) UpdateAssetMasterAccess(ctx context.Context, request operations
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/master-access", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/master-access", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateAssetMasterAccessRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -984,9 +984,9 @@ func (s *assets) UpdateAssetMp4Support(ctx context.Context, request operations.U
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/mp4-support", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/assets/{ASSET_ID}/mp4-support", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateAssetMp4SupportRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

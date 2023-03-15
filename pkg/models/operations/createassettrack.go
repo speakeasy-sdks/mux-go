@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type CreateAssetTrackPathParams struct {
-	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
-}
-
 type CreateAssetTrackRequest struct {
-	PathParams CreateAssetTrackPathParams
-	Request    shared.CreateTrackRequest `request:"mediaType=application/json"`
+	AssetID            string                    `pathParam:"style=simple,explode=false,name=ASSET_ID"`
+	CreateTrackRequest shared.CreateTrackRequest `request:"mediaType=application/json"`
 }
 
 type CreateAssetTrackResponse struct {

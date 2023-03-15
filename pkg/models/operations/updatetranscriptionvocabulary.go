@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type UpdateTranscriptionVocabularyPathParams struct {
-	TranscriptionVocabularyID string `pathParam:"style=simple,explode=false,name=TRANSCRIPTION_VOCABULARY_ID"`
-}
-
 type UpdateTranscriptionVocabularyRequest struct {
-	PathParams UpdateTranscriptionVocabularyPathParams
-	Request    shared.UpdateTranscriptionVocabularyRequest `request:"mediaType=application/json"`
+	TranscriptionVocabularyID            string                                      `pathParam:"style=simple,explode=false,name=TRANSCRIPTION_VOCABULARY_ID"`
+	UpdateTranscriptionVocabularyRequest shared.UpdateTranscriptionVocabularyRequest `request:"mediaType=application/json"`
 }
 
 type UpdateTranscriptionVocabularyResponse struct {

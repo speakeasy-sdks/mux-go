@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type SignalLiveStreamCompletePathParams struct {
-	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
-}
-
 type SignalLiveStreamCompleteRequest struct {
-	PathParams SignalLiveStreamCompletePathParams
+	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
 }
 
 type SignalLiveStreamCompleteResponse struct {

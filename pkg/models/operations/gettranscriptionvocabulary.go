@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetTranscriptionVocabularyPathParams struct {
-	TranscriptionVocabularyID string `pathParam:"style=simple,explode=false,name=TRANSCRIPTION_VOCABULARY_ID"`
-}
-
 type GetTranscriptionVocabularyRequest struct {
-	PathParams GetTranscriptionVocabularyPathParams
+	TranscriptionVocabularyID string `pathParam:"style=simple,explode=false,name=TRANSCRIPTION_VOCABULARY_ID"`
 }
 
 type GetTranscriptionVocabularyResponse struct {

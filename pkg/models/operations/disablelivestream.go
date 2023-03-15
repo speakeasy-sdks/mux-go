@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type DisableLiveStreamPathParams struct {
-	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
-}
-
 type DisableLiveStreamRequest struct {
-	PathParams DisableLiveStreamPathParams
+	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
 }
 
 type DisableLiveStreamResponse struct {

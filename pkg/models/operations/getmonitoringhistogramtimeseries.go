@@ -5,17 +5,9 @@ import (
 	"net/http"
 )
 
-type GetMonitoringHistogramTimeseriesPathParams struct {
-	MonitoringHistogramMetricID shared.MonitoringHistogramMetricIDEnum `pathParam:"style=simple,explode=false,name=MONITORING_HISTOGRAM_METRIC_ID"`
-}
-
-type GetMonitoringHistogramTimeseriesQueryParams struct {
-	Filters []string `queryParam:"style=form,explode=true,name=filters[]"`
-}
-
 type GetMonitoringHistogramTimeseriesRequest struct {
-	PathParams  GetMonitoringHistogramTimeseriesPathParams
-	QueryParams GetMonitoringHistogramTimeseriesQueryParams
+	MonitoringHistogramMetricID shared.MonitoringHistogramMetricIDEnum `pathParam:"style=simple,explode=false,name=MONITORING_HISTOGRAM_METRIC_ID"`
+	Filters                     []string                               `queryParam:"style=form,explode=true,name=filters[]"`
 }
 
 type GetMonitoringHistogramTimeseriesResponse struct {

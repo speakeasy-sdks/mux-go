@@ -4,13 +4,9 @@ import (
 	"net/http"
 )
 
-type DeleteAssetTrackPathParams struct {
+type DeleteAssetTrackRequest struct {
 	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
 	TrackID string `pathParam:"style=simple,explode=false,name=TRACK_ID"`
-}
-
-type DeleteAssetTrackRequest struct {
-	PathParams DeleteAssetTrackPathParams
 }
 
 type DeleteAssetTrackResponse struct {

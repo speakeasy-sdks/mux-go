@@ -32,7 +32,7 @@ func newTranscriptionVocabularies(defaultClient, securityClient HTTPClient, serv
 
 // CreateTranscriptionVocabulary - Create a Transcription Vocabulary
 // Create a new Transcription Vocabulary.
-func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Context, request operations.CreateTranscriptionVocabularyRequest, opts ...operations.Option) (*operations.CreateTranscriptionVocabularyResponse, error) {
+func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Context, request shared.CreateTranscriptionVocabularyRequest, opts ...operations.Option) (*operations.CreateTranscriptionVocabularyResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -46,7 +46,7 @@ func (s *transcriptionVocabularies) CreateTranscriptionVocabulary(ctx context.Co
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/transcription-vocabularies"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -130,7 +130,7 @@ func (s *transcriptionVocabularies) DeleteTranscriptionVocabulary(ctx context.Co
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -197,7 +197,7 @@ func (s *transcriptionVocabularies) GetTranscriptionVocabulary(ctx context.Conte
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -280,7 +280,7 @@ func (s *transcriptionVocabularies) ListTranscriptionVocabularies(ctx context.Co
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -353,9 +353,9 @@ func (s *transcriptionVocabularies) UpdateTranscriptionVocabulary(ctx context.Co
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateTranscriptionVocabularyRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

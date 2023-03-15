@@ -5,15 +5,11 @@ import (
 	"net/http"
 )
 
-type ListAssetsQueryParams struct {
+type ListAssetsRequest struct {
 	Limit        *int    `queryParam:"style=form,explode=true,name=limit"`
 	LiveStreamID *string `queryParam:"style=form,explode=true,name=live_stream_id"`
 	Page         *int    `queryParam:"style=form,explode=true,name=page"`
 	UploadID     *string `queryParam:"style=form,explode=true,name=upload_id"`
-}
-
-type ListAssetsRequest struct {
-	QueryParams ListAssetsQueryParams
 }
 
 type ListAssetsResponse struct {

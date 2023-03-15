@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type CancelDirectUploadPathParams struct {
-	UploadID string `pathParam:"style=simple,explode=false,name=UPLOAD_ID"`
-}
-
 type CancelDirectUploadRequest struct {
-	PathParams CancelDirectUploadPathParams
+	UploadID string `pathParam:"style=simple,explode=false,name=UPLOAD_ID"`
 }
 
 type CancelDirectUploadResponse struct {

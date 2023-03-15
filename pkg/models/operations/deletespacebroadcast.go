@@ -4,13 +4,9 @@ import (
 	"net/http"
 )
 
-type DeleteSpaceBroadcastPathParams struct {
+type DeleteSpaceBroadcastRequest struct {
 	BroadcastID string `pathParam:"style=simple,explode=false,name=BROADCAST_ID"`
 	SpaceID     string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
-}
-
-type DeleteSpaceBroadcastRequest struct {
-	PathParams DeleteSpaceBroadcastPathParams
 }
 
 type DeleteSpaceBroadcastResponse struct {

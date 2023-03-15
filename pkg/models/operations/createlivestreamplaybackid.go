@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type CreateLiveStreamPlaybackIDPathParams struct {
-	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
-}
-
 type CreateLiveStreamPlaybackIDRequest struct {
-	PathParams CreateLiveStreamPlaybackIDPathParams
-	Request    shared.CreatePlaybackIDRequest `request:"mediaType=application/json"`
+	CreatePlaybackIDRequest shared.CreatePlaybackIDRequest `request:"mediaType=application/json"`
+	LiveStreamID            string                         `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
 }
 
 type CreateLiveStreamPlaybackIDResponse struct {

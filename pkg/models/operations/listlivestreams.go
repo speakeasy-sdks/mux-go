@@ -5,15 +5,11 @@ import (
 	"net/http"
 )
 
-type ListLiveStreamsQueryParams struct {
+type ListLiveStreamsRequest struct {
 	Limit     *int                         `queryParam:"style=form,explode=true,name=limit"`
 	Page      *int                         `queryParam:"style=form,explode=true,name=page"`
 	Status    *shared.LiveStreamStatusEnum `queryParam:"style=form,explode=true,name=status"`
 	StreamKey *string                      `queryParam:"style=form,explode=true,name=stream_key"`
-}
-
-type ListLiveStreamsRequest struct {
-	QueryParams ListLiveStreamsQueryParams
 }
 
 type ListLiveStreamsResponse struct {

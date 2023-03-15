@@ -5,16 +5,12 @@ import (
 	"net/http"
 )
 
-type ListDeliveryUsageQueryParams struct {
+type ListDeliveryUsageRequest struct {
 	AssetID      *string  `queryParam:"style=form,explode=true,name=asset_id"`
 	Limit        *int     `queryParam:"style=form,explode=true,name=limit"`
 	LiveStreamID *string  `queryParam:"style=form,explode=true,name=live_stream_id"`
 	Page         *int     `queryParam:"style=form,explode=true,name=page"`
 	Timeframe    []string `queryParam:"style=form,explode=true,name=timeframe[]"`
-}
-
-type ListDeliveryUsageRequest struct {
-	QueryParams ListDeliveryUsageQueryParams
 }
 
 type ListDeliveryUsageResponse struct {

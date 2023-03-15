@@ -5,17 +5,9 @@ import (
 	"net/http"
 )
 
-type GetRealtimeHistogramTimeseriesPathParams struct {
-	RealtimeHistogramMetricID shared.RealtimeHistogramMetricIDEnum `pathParam:"style=simple,explode=false,name=REALTIME_HISTOGRAM_METRIC_ID"`
-}
-
-type GetRealtimeHistogramTimeseriesQueryParams struct {
-	Filters []string `queryParam:"style=form,explode=true,name=filters[]"`
-}
-
 type GetRealtimeHistogramTimeseriesRequest struct {
-	PathParams  GetRealtimeHistogramTimeseriesPathParams
-	QueryParams GetRealtimeHistogramTimeseriesQueryParams
+	RealtimeHistogramMetricID shared.RealtimeHistogramMetricIDEnum `pathParam:"style=simple,explode=false,name=REALTIME_HISTOGRAM_METRIC_ID"`
+	Filters                   []string                             `queryParam:"style=form,explode=true,name=filters[]"`
 }
 
 type GetRealtimeHistogramTimeseriesResponse struct {

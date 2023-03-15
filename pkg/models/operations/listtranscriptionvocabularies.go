@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type ListTranscriptionVocabulariesQueryParams struct {
+type ListTranscriptionVocabulariesRequest struct {
 	Limit *int `queryParam:"style=form,explode=true,name=limit"`
 	Page  *int `queryParam:"style=form,explode=true,name=page"`
-}
-
-type ListTranscriptionVocabulariesRequest struct {
-	QueryParams ListTranscriptionVocabulariesQueryParams
 }
 
 type ListTranscriptionVocabulariesResponse struct {

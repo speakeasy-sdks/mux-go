@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type CreateLiveStreamSimulcastTargetPathParams struct {
-	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
-}
-
 type CreateLiveStreamSimulcastTargetRequest struct {
-	PathParams CreateLiveStreamSimulcastTargetPathParams
-	Request    shared.CreateSimulcastTargetRequest `request:"mediaType=application/json"`
+	CreateSimulcastTargetRequest shared.CreateSimulcastTargetRequest `request:"mediaType=application/json"`
+	LiveStreamID                 string                              `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
 }
 
 type CreateLiveStreamSimulcastTargetResponse struct {

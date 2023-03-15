@@ -82,8 +82,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Mux {
 	sdk := &Mux{
 		_language:   "go",
-		_sdkVersion: "1.7.1",
-		_genVersion: "1.9.2",
+		_sdkVersion: "1.8.0",
+		_genVersion: "1.11.0",
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -94,13 +94,11 @@ func New(opts ...SDKOption) *Mux {
 		sdk._defaultClient = &http.Client{Timeout: 60 * time.Second}
 	}
 	if sdk._securityClient == nil {
-
 		if sdk._security != nil {
 			sdk._securityClient = utils.ConfigureSecurityClient(sdk._defaultClient, sdk._security)
 		} else {
 			sdk._securityClient = sdk._defaultClient
 		}
-
 	}
 
 	if sdk._serverURL == "" {

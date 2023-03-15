@@ -32,7 +32,7 @@ func newLiveStreams(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // CreateLiveStream - Create a live stream
 // Creates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin streaming to an audience.
-func (s *liveStreams) CreateLiveStream(ctx context.Context, request operations.CreateLiveStreamRequest, opts ...operations.Option) (*operations.CreateLiveStreamResponse, error) {
+func (s *liveStreams) CreateLiveStream(ctx context.Context, request shared.CreateLiveStreamRequest, opts ...operations.Option) (*operations.CreateLiveStreamResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -46,7 +46,7 @@ func (s *liveStreams) CreateLiveStream(ctx context.Context, request operations.C
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/live-streams"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -130,9 +130,9 @@ func (s *liveStreams) CreateLiveStreamPlaybackID(ctx context.Context, request op
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreatePlaybackIDRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -216,9 +216,9 @@ func (s *liveStreams) CreateLiveStreamSimulcastTarget(ctx context.Context, reque
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreateSimulcastTargetRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -302,7 +302,7 @@ func (s *liveStreams) DeleteLiveStream(ctx context.Context, request operations.D
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -369,7 +369,7 @@ func (s *liveStreams) DeleteLiveStreamPlaybackID(ctx context.Context, request op
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -436,7 +436,7 @@ func (s *liveStreams) DeleteLiveStreamSimulcastTarget(ctx context.Context, reque
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -505,7 +505,7 @@ func (s *liveStreams) DisableLiveStream(ctx context.Context, request operations.
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/disable", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/disable", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {
@@ -581,7 +581,7 @@ func (s *liveStreams) EnableLiveStream(ctx context.Context, request operations.E
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/enable", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/enable", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {
@@ -657,7 +657,7 @@ func (s *liveStreams) GetLiveStream(ctx context.Context, request operations.GetL
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -733,7 +733,7 @@ func (s *liveStreams) GetLiveStreamPlaybackID(ctx context.Context, request opera
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -809,7 +809,7 @@ func (s *liveStreams) GetLiveStreamSimulcastTarget(ctx context.Context, request 
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -892,7 +892,7 @@ func (s *liveStreams) ListLiveStreams(ctx context.Context, request operations.Li
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -965,7 +965,7 @@ func (s *liveStreams) ResetStreamKey(ctx context.Context, request operations.Res
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -1043,7 +1043,7 @@ func (s *liveStreams) SignalLiveStreamComplete(ctx context.Context, request oper
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/complete", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/complete", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {
@@ -1119,9 +1119,9 @@ func (s *liveStreams) UpdateLiveStream(ctx context.Context, request operations.U
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateLiveStreamRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1206,9 +1206,9 @@ func (s *liveStreams) UpdateLiveStreamEmbeddedSubtitles(ctx context.Context, req
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateLiveStreamEmbeddedSubtitlesRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -1294,9 +1294,9 @@ func (s *liveStreams) UpdateLiveStreamGeneratedSubtitles(ctx context.Context, re
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "UpdateLiveStreamGeneratedSubtitlesRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

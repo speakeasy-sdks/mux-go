@@ -46,7 +46,7 @@ func (s *directUploads) CancelDirectUpload(ctx context.Context, request operatio
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/uploads/{UPLOAD_ID}/cancel", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/uploads/{UPLOAD_ID}/cancel", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {
@@ -111,7 +111,7 @@ func (s *directUploads) CancelDirectUpload(ctx context.Context, request operatio
 
 // CreateDirectUpload - Create a new direct upload URL
 // Creates a new direct upload, through which video content can be uploaded for ingest to Mux.
-func (s *directUploads) CreateDirectUpload(ctx context.Context, request operations.CreateDirectUploadRequest, opts ...operations.Option) (*operations.CreateDirectUploadResponse, error) {
+func (s *directUploads) CreateDirectUpload(ctx context.Context, request shared.CreateUploadRequest, opts ...operations.Option) (*operations.CreateDirectUploadResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -125,7 +125,7 @@ func (s *directUploads) CreateDirectUpload(ctx context.Context, request operatio
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/uploads"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -209,7 +209,7 @@ func (s *directUploads) GetDirectUpload(ctx context.Context, request operations.
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/uploads/{UPLOAD_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/uploads/{UPLOAD_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -292,7 +292,7 @@ func (s *directUploads) ListDirectUploads(ctx context.Context, request operation
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

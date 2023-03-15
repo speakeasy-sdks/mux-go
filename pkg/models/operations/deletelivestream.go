@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type DeleteLiveStreamPathParams struct {
-	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
-}
-
 type DeleteLiveStreamRequest struct {
-	PathParams DeleteLiveStreamPathParams
+	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
 }
 
 type DeleteLiveStreamResponse struct {

@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type ListPlaybackRestrictionsQueryParams struct {
+type ListPlaybackRestrictionsRequest struct {
 	Limit *int `queryParam:"style=form,explode=true,name=limit"`
 	Page  *int `queryParam:"style=form,explode=true,name=page"`
-}
-
-type ListPlaybackRestrictionsRequest struct {
-	QueryParams ListPlaybackRestrictionsQueryParams
 }
 
 type ListPlaybackRestrictionsResponse struct {

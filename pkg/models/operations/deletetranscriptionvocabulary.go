@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type DeleteTranscriptionVocabularyPathParams struct {
-	TranscriptionVocabularyID string `pathParam:"style=simple,explode=false,name=TRANSCRIPTION_VOCABULARY_ID"`
-}
-
 type DeleteTranscriptionVocabularyRequest struct {
-	PathParams DeleteTranscriptionVocabularyPathParams
+	TranscriptionVocabularyID string `pathParam:"style=simple,explode=false,name=TRANSCRIPTION_VOCABULARY_ID"`
 }
 
 type DeleteTranscriptionVocabularyResponse struct {

@@ -5,11 +5,8 @@ import (
 	"net/http"
 )
 
-type ListBreakdownValuesPathParams struct {
-	MetricID shared.MetricIDEnum `pathParam:"style=simple,explode=false,name=METRIC_ID"`
-}
-
-type ListBreakdownValuesQueryParams struct {
+type ListBreakdownValuesRequest struct {
+	MetricID       shared.MetricIDEnum        `pathParam:"style=simple,explode=false,name=METRIC_ID"`
 	Filters        []string                   `queryParam:"style=form,explode=true,name=filters[]"`
 	GroupBy        *shared.GroupByEnum        `queryParam:"style=form,explode=true,name=group_by"`
 	Limit          *int                       `queryParam:"style=form,explode=true,name=limit"`
@@ -18,11 +15,6 @@ type ListBreakdownValuesQueryParams struct {
 	OrderDirection *shared.OrderDirectionEnum `queryParam:"style=form,explode=true,name=order_direction"`
 	Page           *int                       `queryParam:"style=form,explode=true,name=page"`
 	Timeframe      []string                   `queryParam:"style=form,explode=true,name=timeframe[]"`
-}
-
-type ListBreakdownValuesRequest struct {
-	PathParams  ListBreakdownValuesPathParams
-	QueryParams ListBreakdownValuesQueryParams
 }
 
 type ListBreakdownValuesResponse struct {

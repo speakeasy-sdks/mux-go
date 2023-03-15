@@ -32,7 +32,7 @@ func newSpaces(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // CreateSpace - Create a space
 // Create a new space. Spaces are used to build [real-time video applications.](https://mux.com/real-time-video)
-func (s *spaces) CreateSpace(ctx context.Context, request operations.CreateSpaceRequest, opts ...operations.Option) (*operations.CreateSpaceResponse, error) {
+func (s *spaces) CreateSpace(ctx context.Context, request shared.CreateSpaceRequest, opts ...operations.Option) (*operations.CreateSpaceResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -46,7 +46,7 @@ func (s *spaces) CreateSpace(ctx context.Context, request operations.CreateSpace
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/spaces"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -131,9 +131,9 @@ func (s *spaces) CreateSpaceBroadcast(ctx context.Context, request operations.Cr
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreateBroadcastRequest", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -217,7 +217,7 @@ func (s *spaces) DeleteSpace(ctx context.Context, request operations.DeleteSpace
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -284,7 +284,7 @@ func (s *spaces) DeleteSpaceBroadcast(ctx context.Context, request operations.De
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -351,7 +351,7 @@ func (s *spaces) GetSpace(ctx context.Context, request operations.GetSpaceReques
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -427,7 +427,7 @@ func (s *spaces) GetSpaceBroadcast(ctx context.Context, request operations.GetSp
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -510,7 +510,7 @@ func (s *spaces) ListSpaces(ctx context.Context, request operations.ListSpacesRe
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -583,7 +583,7 @@ func (s *spaces) StartSpaceBroadcast(ctx context.Context, request operations.Sta
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -660,7 +660,7 @@ func (s *spaces) StopSpaceBroadcast(ctx context.Context, request operations.Stop
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {

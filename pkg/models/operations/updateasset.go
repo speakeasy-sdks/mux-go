@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type UpdateAssetPathParams struct {
-	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
-}
-
 type UpdateAssetRequest struct {
-	PathParams UpdateAssetPathParams
-	Request    shared.UpdateAssetRequest `request:"mediaType=application/json"`
+	AssetID            string                    `pathParam:"style=simple,explode=false,name=ASSET_ID"`
+	UpdateAssetRequest shared.UpdateAssetRequest `request:"mediaType=application/json"`
 }
 
 type UpdateAssetResponse struct {

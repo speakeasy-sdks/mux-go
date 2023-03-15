@@ -5,10 +5,6 @@ import (
 	"net/http"
 )
 
-type CreateTranscriptionVocabularyRequest struct {
-	Request shared.CreateTranscriptionVocabularyRequest `request:"mediaType=application/json"`
-}
-
 type CreateTranscriptionVocabularyResponse struct {
 	ContentType                     string
 	StatusCode                      int

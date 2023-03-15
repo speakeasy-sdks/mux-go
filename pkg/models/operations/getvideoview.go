@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetVideoViewPathParams struct {
-	VideoViewID string `pathParam:"style=simple,explode=false,name=VIDEO_VIEW_ID"`
-}
-
 type GetVideoViewRequest struct {
-	PathParams GetVideoViewPathParams
+	VideoViewID string `pathParam:"style=simple,explode=false,name=VIDEO_VIEW_ID"`
 }
 
 type GetVideoViewResponse struct {
