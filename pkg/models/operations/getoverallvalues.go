@@ -5,19 +5,11 @@ import (
 	"net/http"
 )
 
-type GetOverallValuesPathParams struct {
-	MetricID shared.MetricIDEnum `pathParam:"style=simple,explode=false,name=METRIC_ID"`
-}
-
-type GetOverallValuesQueryParams struct {
+type GetOverallValuesRequest struct {
+	MetricID    shared.MetricIDEnum     `pathParam:"style=simple,explode=false,name=METRIC_ID"`
 	Filters     []string                `queryParam:"style=form,explode=true,name=filters[]"`
 	Measurement *shared.MeasurementEnum `queryParam:"style=form,explode=true,name=measurement"`
 	Timeframe   []string                `queryParam:"style=form,explode=true,name=timeframe[]"`
-}
-
-type GetOverallValuesRequest struct {
-	PathParams  GetOverallValuesPathParams
-	QueryParams GetOverallValuesQueryParams
 }
 
 type GetOverallValuesResponse struct {

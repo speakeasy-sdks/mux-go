@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type CreateAssetPlaybackIDPathParams struct {
-	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
-}
-
 type CreateAssetPlaybackIDRequest struct {
-	PathParams CreateAssetPlaybackIDPathParams
-	Request    shared.CreatePlaybackIDRequest `request:"mediaType=application/json"`
+	AssetID                 string                         `pathParam:"style=simple,explode=false,name=ASSET_ID"`
+	CreatePlaybackIDRequest shared.CreatePlaybackIDRequest `request:"mediaType=application/json"`
 }
 
 type CreateAssetPlaybackIDResponse struct {

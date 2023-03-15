@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type UpdateReferrerDomainRestrictionPathParams struct {
-	PlaybackRestrictionID string `pathParam:"style=simple,explode=false,name=PLAYBACK_RESTRICTION_ID"`
-}
-
 type UpdateReferrerDomainRestrictionRequest struct {
-	PathParams UpdateReferrerDomainRestrictionPathParams
-	Request    interface{} `request:"mediaType=application/json"`
+	PlaybackRestrictionID string      `pathParam:"style=simple,explode=false,name=PLAYBACK_RESTRICTION_ID"`
+	RequestBody           interface{} `request:"mediaType=application/json"`
 }
 
 type UpdateReferrerDomainRestrictionResponse struct {

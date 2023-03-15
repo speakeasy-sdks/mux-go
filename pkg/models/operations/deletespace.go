@@ -4,12 +4,8 @@ import (
 	"net/http"
 )
 
-type DeleteSpacePathParams struct {
-	SpaceID string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
-}
-
 type DeleteSpaceRequest struct {
-	PathParams DeleteSpacePathParams
+	SpaceID string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
 }
 
 type DeleteSpaceResponse struct {

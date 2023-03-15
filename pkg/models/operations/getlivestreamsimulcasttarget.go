@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type GetLiveStreamSimulcastTargetPathParams struct {
+type GetLiveStreamSimulcastTargetRequest struct {
 	LiveStreamID      string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
 	SimulcastTargetID string `pathParam:"style=simple,explode=false,name=SIMULCAST_TARGET_ID"`
-}
-
-type GetLiveStreamSimulcastTargetRequest struct {
-	PathParams GetLiveStreamSimulcastTargetPathParams
 }
 
 type GetLiveStreamSimulcastTargetResponse struct {

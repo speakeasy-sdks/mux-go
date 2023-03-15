@@ -120,7 +120,7 @@ func (s *urlSigningKeys) DeleteURLSigningKey(ctx context.Context, request operat
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/signing-keys/{SIGNING_KEY_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/signing-keys/{SIGNING_KEY_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -190,7 +190,7 @@ func (s *urlSigningKeys) GetURLSigningKey(ctx context.Context, request operation
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/signing-keys/{SIGNING_KEY_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/signing-keys/{SIGNING_KEY_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -273,7 +273,7 @@ func (s *urlSigningKeys) ListURLSigningKeys(ctx context.Context, request operati
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

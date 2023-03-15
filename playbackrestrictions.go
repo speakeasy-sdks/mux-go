@@ -32,7 +32,7 @@ func newPlaybackRestrictions(defaultClient, securityClient HTTPClient, serverURL
 
 // CreatePlaybackRestriction - Create a Playback Restriction
 // Create a new Playback Restriction.
-func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, request operations.CreatePlaybackRestrictionRequest, opts ...operations.Option) (*operations.CreatePlaybackRestrictionResponse, error) {
+func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, request shared.CreatePlaybackRestrictionRequest, opts ...operations.Option) (*operations.CreatePlaybackRestrictionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -46,7 +46,7 @@ func (s *playbackRestrictions) CreatePlaybackRestriction(ctx context.Context, re
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/video/v1/playback-restrictions"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -130,7 +130,7 @@ func (s *playbackRestrictions) DeletePlaybackRestriction(ctx context.Context, re
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -197,7 +197,7 @@ func (s *playbackRestrictions) GetPlaybackRestriction(ctx context.Context, reque
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -280,7 +280,7 @@ func (s *playbackRestrictions) ListPlaybackRestrictions(ctx context.Context, req
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -353,9 +353,9 @@ func (s *playbackRestrictions) UpdateReferrerDomainRestriction(ctx context.Conte
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

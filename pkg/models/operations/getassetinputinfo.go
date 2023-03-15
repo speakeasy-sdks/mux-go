@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetAssetInputInfoPathParams struct {
-	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
-}
-
 type GetAssetInputInfoRequest struct {
-	PathParams GetAssetInputInfoPathParams
+	AssetID string `pathParam:"style=simple,explode=false,name=ASSET_ID"`
 }
 
 type GetAssetInputInfoResponse struct {

@@ -5,17 +5,13 @@ import (
 	"net/http"
 )
 
-type ListIncidentsQueryParams struct {
+type ListIncidentsRequest struct {
 	Limit          *int                       `queryParam:"style=form,explode=true,name=limit"`
 	OrderBy        *shared.OrderByEnum        `queryParam:"style=form,explode=true,name=order_by"`
 	OrderDirection *shared.OrderDirectionEnum `queryParam:"style=form,explode=true,name=order_direction"`
 	Page           *int                       `queryParam:"style=form,explode=true,name=page"`
 	Severity       *shared.SeverityEnum       `queryParam:"style=form,explode=true,name=severity"`
 	Status         *shared.IncidentStatusEnum `queryParam:"style=form,explode=true,name=status"`
-}
-
-type ListIncidentsRequest struct {
-	QueryParams ListIncidentsQueryParams
 }
 
 type ListIncidentsResponse struct {

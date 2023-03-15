@@ -5,10 +5,6 @@ import (
 	"net/http"
 )
 
-type CreateAssetRequest struct {
-	Request shared.CreateAssetRequest `request:"mediaType=application/json"`
-}
-
 type CreateAssetResponse struct {
 	AssetResponse *shared.AssetResponse
 	ContentType   string

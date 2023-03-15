@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type CreateSpaceBroadcastPathParams struct {
-	SpaceID string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
-}
-
 type CreateSpaceBroadcastRequest struct {
-	PathParams CreateSpaceBroadcastPathParams
-	Request    shared.CreateBroadcastRequest `request:"mediaType=application/json"`
+	CreateBroadcastRequest shared.CreateBroadcastRequest `request:"mediaType=application/json"`
+	SpaceID                string                        `pathParam:"style=simple,explode=false,name=SPACE_ID"`
 }
 
 type CreateSpaceBroadcastResponse struct {

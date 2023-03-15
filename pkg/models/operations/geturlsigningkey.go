@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetURLSigningKeyPathParams struct {
-	SigningKeyID string `pathParam:"style=simple,explode=false,name=SIGNING_KEY_ID"`
-}
-
 type GetURLSigningKeyRequest struct {
-	PathParams GetURLSigningKeyPathParams
+	SigningKeyID string `pathParam:"style=simple,explode=false,name=SIGNING_KEY_ID"`
 }
 
 type GetURLSigningKeyResponse struct {

@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetSpacePathParams struct {
-	SpaceID string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
-}
-
 type GetSpaceRequest struct {
-	PathParams GetSpacePathParams
+	SpaceID string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
 }
 
 type GetSpaceResponse struct {

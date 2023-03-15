@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetIncidentPathParams struct {
-	IncidentID string `pathParam:"style=simple,explode=false,name=INCIDENT_ID"`
-}
-
 type GetIncidentRequest struct {
-	PathParams GetIncidentPathParams
+	IncidentID string `pathParam:"style=simple,explode=false,name=INCIDENT_ID"`
 }
 
 type GetIncidentResponse struct {

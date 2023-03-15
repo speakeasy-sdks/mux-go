@@ -5,10 +5,6 @@ import (
 	"net/http"
 )
 
-type CreatePlaybackRestrictionRequest struct {
-	Request shared.CreatePlaybackRestrictionRequest `request:"mediaType=application/json"`
-}
-
 type CreatePlaybackRestrictionResponse struct {
 	ContentType                 string
 	PlaybackRestrictionResponse *shared.PlaybackRestrictionResponse

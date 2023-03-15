@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type ListSpacesQueryParams struct {
+type ListSpacesRequest struct {
 	Limit *int `queryParam:"style=form,explode=true,name=limit"`
 	Page  *int `queryParam:"style=form,explode=true,name=page"`
-}
-
-type ListSpacesRequest struct {
-	QueryParams ListSpacesQueryParams
 }
 
 type ListSpacesResponse struct {

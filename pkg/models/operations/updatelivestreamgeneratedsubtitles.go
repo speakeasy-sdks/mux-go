@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type UpdateLiveStreamGeneratedSubtitlesPathParams struct {
-	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
-}
-
 type UpdateLiveStreamGeneratedSubtitlesRequest struct {
-	PathParams UpdateLiveStreamGeneratedSubtitlesPathParams
-	Request    shared.UpdateLiveStreamGeneratedSubtitlesRequest `request:"mediaType=application/json"`
+	LiveStreamID                              string                                           `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
+	UpdateLiveStreamGeneratedSubtitlesRequest shared.UpdateLiveStreamGeneratedSubtitlesRequest `request:"mediaType=application/json"`
 }
 
 type UpdateLiveStreamGeneratedSubtitlesResponse struct {

@@ -43,7 +43,7 @@ func (s *playbackID) GetAssetOrLivestreamID(ctx context.Context, request operati
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-ids/{PLAYBACK_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/video/v1/playback-ids/{PLAYBACK_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

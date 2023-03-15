@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-type ListVideoViewsQueryParams struct {
+type ListVideoViewsRequest struct {
 	ErrorID        *int                       `queryParam:"style=form,explode=true,name=error_id"`
 	Filters        []string                   `queryParam:"style=form,explode=true,name=filters[]"`
 	Limit          *int                       `queryParam:"style=form,explode=true,name=limit"`
@@ -13,10 +13,6 @@ type ListVideoViewsQueryParams struct {
 	Page           *int                       `queryParam:"style=form,explode=true,name=page"`
 	Timeframe      []string                   `queryParam:"style=form,explode=true,name=timeframe[]"`
 	ViewerID       *string                    `queryParam:"style=form,explode=true,name=viewer_id"`
-}
-
-type ListVideoViewsRequest struct {
-	QueryParams ListVideoViewsQueryParams
 }
 
 type ListVideoViewsResponse struct {

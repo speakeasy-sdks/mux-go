@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type ResetStreamKeyPathParams struct {
-	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
-}
-
 type ResetStreamKeyRequest struct {
-	PathParams ResetStreamKeyPathParams
+	LiveStreamID string `pathParam:"style=simple,explode=false,name=LIVE_STREAM_ID"`
 }
 
 type ResetStreamKeyResponse struct {

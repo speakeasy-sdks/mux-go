@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type StopSpaceBroadcastPathParams struct {
+type StopSpaceBroadcastRequest struct {
 	BroadcastID string `pathParam:"style=simple,explode=false,name=BROADCAST_ID"`
 	SpaceID     string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
-}
-
-type StopSpaceBroadcastRequest struct {
-	PathParams StopSpaceBroadcastPathParams
 }
 
 type StopSpaceBroadcastResponse struct {

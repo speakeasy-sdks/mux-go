@@ -44,7 +44,7 @@ func (s *videoViews) GetVideoView(ctx context.Context, request operations.GetVid
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/video-views/{VIDEO_VIEW_ID}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/video-views/{VIDEO_VIEW_ID}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -127,7 +127,7 @@ func (s *videoViews) ListVideoViews(ctx context.Context, request operations.List
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -5,12 +5,8 @@ import (
 	"net/http"
 )
 
-type GetDirectUploadPathParams struct {
-	UploadID string `pathParam:"style=simple,explode=false,name=UPLOAD_ID"`
-}
-
 type GetDirectUploadRequest struct {
-	PathParams GetDirectUploadPathParams
+	UploadID string `pathParam:"style=simple,explode=false,name=UPLOAD_ID"`
 }
 
 type GetDirectUploadResponse struct {

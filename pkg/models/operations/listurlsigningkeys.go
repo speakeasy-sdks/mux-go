@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type ListURLSigningKeysQueryParams struct {
+type ListURLSigningKeysRequest struct {
 	Limit *int `queryParam:"style=form,explode=true,name=limit"`
 	Page  *int `queryParam:"style=form,explode=true,name=page"`
-}
-
-type ListURLSigningKeysRequest struct {
-	QueryParams ListURLSigningKeysQueryParams
 }
 
 type ListURLSigningKeysResponse struct {

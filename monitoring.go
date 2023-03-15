@@ -44,14 +44,14 @@ func (s *monitoring) GetMonitoringBreakdown(ctx context.Context, request operati
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -124,14 +124,14 @@ func (s *monitoring) GetMonitoringHistogramTimeseries(ctx context.Context, reque
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_HISTOGRAM_METRIC_ID}/histogram-timeseries", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_HISTOGRAM_METRIC_ID}/histogram-timeseries", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -204,14 +204,14 @@ func (s *monitoring) GetMonitoringTimeseries(ctx context.Context, request operat
 		}
 	}
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/timeseries", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/timeseries", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

@@ -5,13 +5,9 @@ import (
 	"net/http"
 )
 
-type StartSpaceBroadcastPathParams struct {
+type StartSpaceBroadcastRequest struct {
 	BroadcastID string `pathParam:"style=simple,explode=false,name=BROADCAST_ID"`
 	SpaceID     string `pathParam:"style=simple,explode=false,name=SPACE_ID"`
-}
-
-type StartSpaceBroadcastRequest struct {
-	PathParams StartSpaceBroadcastPathParams
 }
 
 type StartSpaceBroadcastResponse struct {
